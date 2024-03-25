@@ -83,15 +83,15 @@ const verifyOtp = async (req, res) => {
         if (req.body.sendotp == req.body.otp) {
             const userData = await user.save();
             if (userData) {
-                res.render('register', { user: req.session.user, message: "registered successfully" })
+                res.render('register', { user: req.session.user, message: "Registered successfully" })
             }
             else {
-                res.render('register', { user: req.session.user, message: "registration failed!!" })
+                res.render('register', { user: req.session.user, message: "Registration failed!!" })
             }
         } else {
 
             console.log("otp not match");
-            res.render('register', { user: req.session.user, message: "incorrect otp" })
+            res.render('register', { user: req.session.user, message: "Incorrect otp" })
         }
 
     } catch (error) {
