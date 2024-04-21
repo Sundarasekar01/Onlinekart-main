@@ -10,15 +10,20 @@ const order = require("../models/orderModel");
 const RazorPay = require("razorpay");
 require("dotenv").config();
 const loadHome = async (req, res) => {
+
+   
+
     try {
         const product = await products.find({ isAvailable: 1 });
         const banners = await banner.findOne({ is_active: 1 });
-        res.render('home', { user: req.session.user, product: product, banner: banners })
+        res.render('home', { user: req.session.user,  product: product, banner: banners })
+       
     }
     catch (error) {
         console.log(error.message)
     }
 }
+
 const loginLoad = async (req, res) => {
     try {
 
@@ -99,10 +104,6 @@ const verifyOtp = async (req, res) => {
     }
 }
 
-
-
-
-
 const verifyLogin = async (req, res) => {
     try {
         const email = req.body.email;
@@ -115,52 +116,90 @@ const verifyLogin = async (req, res) => {
 
             if (passwordMatch) {
                 if (userData.is_verified) {
-                    newOtp = 8541;
-                    // newOtp =  sms.sendMessage(userData.mobile,res)
-                    console.log(newOtp);
-                    res.render('twoFactor', { otp: newOtp, userData: userData });
+                    // Skip two-factor verification
+                    const product = await products.find();
+                    const banners = await banner.findOne({ is_active: 1 });
+                    const userid = userData.id; // Assuming id is the user's ID
+                    const username = userData.name; // Assuming name is the user's name
+                    req.session.user_id = userid;
+                    req.session.user = username;
+                    req.session.user1 = true;
+                    res.render('home', { user: req.session.user, product: product, banner: banners });
                 } else {
-                    res.render('login', { message: 'you are blocked by administrator', user: req.session.user })
-
+                    res.render('login', { message: 'You are blocked by the administrator', user: req.session.user });
                 }
+            } else {
+                res.render('login', { message: 'Email and password are incorrect', user: req.session.user });
             }
-
-            else {
-                res.render('login', { message: 'email and password are incorrect', user: req.session.user })
-            }
-        }
-        else {
-            res.render('login', { message: 'email and password are incorrect', user: req.session.user })
-        }
-
-
-
-    }
-    catch (error) {
-        console.log(error.message);
-    }
-}
-
-const twoFactor = async (req, res) => {
-    try {
-        if (req.query.id == req.body.otp) {
-
-            const product = await products.find();
-            const banners = await banner.findOne({ is_active: 1 });
-            const userid = req.body.userDataid;
-            const username = req.body.userDataname;
-            req.session.user_id = userid;
-            req.session.user = username;
-            req.session.user1 = true
-            res.render('home', { user: req.session.user, product: product, banner: banners });
-        }
-        else {
-            res.render('login', { message: "incorrect otp!", user: req.session.user })
+        } else {
+            res.render('login', { message: 'Email and password are incorrect', user: req.session.user });
         }
     } catch (error) {
         console.log(error.message);
     }
-};
+}
+
+
+
+
+
+//     try {
+//         const email = req.body.email;
+//         const password = req.body.password;
+
+//         const userData = await User.findOne({ email: email, is_admin: 0 });
+//         console.log("user:" + userData)
+//         if (userData) {
+//             const passwordMatch = await bcrypt.compare(password, userData.password)
+
+//             if (passwordMatch) {
+//                 if (userData.is_verified) {
+//                     newOtp = 8541;
+//                     // newOtp =  sms.sendMessage(userData.mobile,res)
+//                     console.log(newOtp);
+//                     res.render('twoFactor', { otp: newOtp, userData: userData });
+//                 } else {
+//                     res.render('login', { message: 'you are blocked by administrator', user: req.session.user })
+
+//                 }
+//             }
+
+//             else {
+//                 res.render('login', { message: 'email and password are incorrect', user: req.session.user })
+//             }
+//         }
+//         else {
+//             res.render('login', { message: 'email and password are incorrect', user: req.session.user })
+//         }
+
+
+
+//     }
+//     catch (error) {
+//         console.log(error.message);
+//     }
+// }
+
+// const twoFactor = async (req, res) => {
+//     try {
+//         if (req.query.id == req.body.otp) {
+
+//             const product = await products.find();
+//             const banners = await banner.findOne({ is_active: 1 });
+//             const userid = req.body.userDataid;
+//             const username = req.body.userDataname;
+//             req.session.user_id = userid;
+//             req.session.user = username;
+//             req.session.user1 = true
+//             res.render('home', { user: req.session.user, product: product, banner: banners });
+//         }
+//         else {
+//             res.render('login', { message: "incorrect otp!", user: req.session.user })
+//         }
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// };
 
 const userLogout = async (req, res) => {
     try {
@@ -372,6 +411,8 @@ const editAddress = async (req, res) => {
         console.log(error.message);
     }
 }
+
+
 const editUpdateAddress = async (req, res) => {
     try {
         const id = req.body.id;
@@ -421,6 +462,10 @@ const editUserUpdate = async (req, res) => {
         console.log(error.message);
     }
 }
+
+
+
+
 
 let Norder;
 const placeOrder = async (req, res) => {
@@ -749,7 +794,7 @@ module.exports = {
     loadOtp,
     verifyOtp,
     loadShop,
-    twoFactor,
+    // twoFactor,
     loadCheckout,
     loadUserProfile,
     addNewAddress,

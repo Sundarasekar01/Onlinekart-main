@@ -20,7 +20,8 @@ const loadVeriftyForgotPassword = async (req, res) => {
     const userDetails = await User.findOne({ mobile: mobile })
     if (userDetails) {
         try {
-            newOtp = sms.sendMessage(mobile, res);
+            // newOtp = sms.sendMessage(mobile, res);
+            newOtp = 8541 ;
             console.log(newOtp);
             res.render("forgetPasswordVOtp", { mobile: mobile, newOtp: newOtp })
         } catch (error) {
@@ -34,7 +35,8 @@ const loadVeriftyForgotPassword = async (req, res) => {
 const resendOtp = async (req, res) => {
     try {
         console.log(mobile);
-        newOtp = sms.sendMessage(mobile, res);
+        // newOtp = sms.sendMessage(mobile, res);
+        newOtp = 8541 ;
         res.render("forgetPasswordVOtp", { mobile: mobile, newOtp: newOtp });
     } catch (error) {
         console.log(error.message);
@@ -56,22 +58,42 @@ const verifyOtp = async (req, res) => {
     }
 };
 
+// const resetPassword = async (req, res) => {
+//     try {
+//         const phoneNumber = req.body.mobilenumber;
+//         const newPassword = req.body.Password;
+//         const secure_password = await bcrypt.hash(newPassword, 10)
+//         const updatedData = await User.updateOne({ mobile: phoneNumber }, { $set: { password: secure_password } })
+//         console.log(updatedData);
+//         if (updatedData) {
+//             res.status(200).render("login", { message: "password reset succsefullly", user: req.session.user })
+//         } else {
+//             res.render("login", { message: "verification failed", user: req.session.user });
+//         }
+//     } catch (error) {
+//         console.log(error.message);
+//     }
+// }
+
+
 const resetPassword = async (req, res) => {
     try {
         const phoneNumber = req.body.mobilenumber;
         const newPassword = req.body.Password;
-        const secure_password = await bcrypt.hash(newPassword, 10)
-        const updatedData = await User.updateOne({ mobile: phoneNumber }, { $set: { password: secure_password } })
+        const secure_password = await bcrypt.hash(newPassword, 10);
+        // Update user's password in the database
+        const updatedData = await User.updateOne({ mobile: phoneNumber }, { $set: { password: secure_password } });
         console.log(updatedData);
-        if (updatedData) {
-            res.status(200).render("login", { message: "password reset succsefullly", user: req.session.user })
+        if (updatedData && updatedData.nModified > 0) {
+            res.status(200).render("login", { message: "Password reset successfully", user: req.session.user });
         } else {
-            res.render("login", { message: "verification failed", user: req.session.user });
+            res.render("login", { message: "Verification failed", user: req.session.user });
         }
     } catch (error) {
         console.log(error.message);
     }
 }
+
 
 
 
@@ -82,3 +104,5 @@ module.exports = {
     resetPassword,
     resendOtp,
 }
+
+

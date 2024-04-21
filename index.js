@@ -1,51 +1,42 @@
-const mongoose = require("mongoose")
-require('dotenv').config();
-mongoose.set('strictQuery', false);
-const express = require("express")
-const nocache = require('nocache');
-const mongoSanitize = require('express-mongo-sanitize');
-const app = express()
-
-DB = process.env.DBURL
-mongoose.connect(DB)
-
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
 const connection = mongoose.connection;
-
-connection.once('open', () => {
-  console.log('connection is successfull');
-})
-
-app.set('view engine', 'ejs');
-
-app.use(express.static('public'));
-
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
-
-app.use(nocache());
-
-app.use(mongoSanitize());
+const nocache = require("nocache");
+const mongoSanitize = require("express-mongo-sanitize");
 
 const userRoute = require("./routes/userRoute");
-
-app.use("/", userRoute);
-
 const adminRoute = require("./routes/adminRoute");
-
-app.use("/admin", adminRoute);
-
 const forgotPassword = require("./routes/forgotPassword");
 
-app.use("/forgot", forgotPassword);
 
-app.all("*", (req, res) => {
-  res.render("error")
-})
 
-app.listen(4000, function () {
-  console.log("server is running at 4000");
+require("dotenv").config();
+mongoose.set("strictQuery", false);
+
+DB = process.env.DBURL;
+mongoose.connect(DB);
+connection.once("open", () => {
+  console.log("connection is successfull");
 });
 
 
+app.use(express.static("public"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(nocache());
+app.use(mongoSanitize());
 
+app.set("view engine", "ejs");
+
+app.use("/", userRoute);
+app.use("/admin", adminRoute);
+app.use("/forgot", forgotPassword);
+
+// app.all("*", (req, res) => {
+//   res.render("error");
+// });
+
+app.listen(2308, function () {
+  console.log("server is running at 2308");
+});

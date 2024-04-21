@@ -1,43 +1,15 @@
-<%- include ('../layouts/header.ejs') %>
+<%- include ('../partials/header.ejs') %>
 <br>
 
 
-<div class="container-fluid">
-    <div class="row px-xl-5">
-        <div class="col-12">
-            <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">Home</a>
-                <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                <span class="breadcrumb-item active">Checkout</span>
-            </nav>
-        </div>
-    </div>
-</div>
-<!-- Breadcrumb End -->
+
 
 <style>
    
 
-    .address-selection-card {
-        background-color: #f2f2f2;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-bottom: 2%;
-        margin-left: 4%;
-    }
-
-    .address-selection-card h5 {
-        margin-top: 0;
-    }
-
-    .address-selection-card label {
-        display: block;
-        margin-bottom: 10px;
-        margin-left: 20px;
-    }
 
     .address-selection-card input[type="radio"] {
-        margin-right: 10px;
+        margin-right: 6px;
     }
 
     @media (min-width: 576px) {
@@ -67,18 +39,26 @@
 
 <br>
 <!-- Checkout Start -->
+<div class="container">
+
+
 <h5 style="margin-left: 4%; margin-right: 4%;" class="section-title position-relative text-uppercase mb-3"><span
         class=" pr-3">Choose Address</span></h5>
 <form action="/orderSuccess" method="post">
     <div class="row p-4 rounded container-fluid">
         <% for(i=0;i<address.length;i++){%>
-            <div class="address-selection-card col-sm-6 col-md-4">
-                <input style="margin-left: 10px;" type="radio" name="address" id="addressid"
-                    value="<%=address[i]._id%>" <% if(i==0){%>checked<%}%>>
+          <div class="card cart-detail border-gray  mt-2 mb-3" style="padding: 20px;border-radius: 15px; width: fit-content;">
+                
+            <div class="custom-control custom-checkbox">
+              <input style="margin-left: 10px;" type="radio" name="address" id="addressid"
+              value="<%=address[i]._id%>" <% if(i==0){%>checked<%}%>>
+              <label class="text text-bold">  Address <%=i+1%></label>
+          </div>
+
+<br>
+                   
                     <label>
-                        <h5>
-                            <%=i+1%>
-                        </h5>
+                        
                         <%=address[i].firstname%>
                             <%=address[i].lastname%>
                                 <br>
@@ -91,13 +71,21 @@
                                             <%=address[i].country%>
                                                 <br>
                                                 <%=address[i].zip%>
+<br>
+<!-- 
+                                                <a href="/editcheckout-address?id=<%=address[i]._id%>"><button
+                                                  style="margin-top: 10px;"
+                                                  class="btn btn-primary">edit</button></a>
+                                          <a href=""><button style="margin-top: 10px;"  class=" btn btn-danger"
+                                              onclick="confirmDelete('<%=address[i]._id%>')">delete</button></a>
+                      
+ -->
+
                     </label>
-                    <a href="/editcheckout-address?id=<%=address[i]._id%>"><button
-                            style="margin-top: 10px; margin-left: 5%;" type="button"
-                            class="btn-default">edit</button></a>
-                    <button style="margin-top: 10px;" type="button" class="btn-danger"
-                        onclick="confirmDelete('<%=address[i]._id%>')">delete</button>
+
+                   
             </div>
+            &ensp;
             <%}%>
     </div>
     <hr>
@@ -113,7 +101,7 @@
                             <div class="custom-control custom-checkbox">
                                 <input style="margin-left: 10px;" type="radio" name="address" id="addressid"
                                     value=0>
-                                <label class="">Ship to different address</label>
+                                <label class="section-title">Ship to different address</label>
                             </div>
                         </div>
                     </div>
@@ -123,36 +111,36 @@
                     <div class=" tr p-30">
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label>First Name</label>
+                                <label class="form-label">First Name</label>
                                 <input class="form-control" type="text" name="firstname" placeholder="firstname">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Last Name</label>
+                                <label class="form-label">Last Name</label>
                                 <input class="form-control" type="text" name="lastname" placeholder="lastname">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Country</label>
+                                <label class="form-label">Country</label>
                                 <input class="form-control" type="text" name="country" placeholder="Country">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Address</label>
+                                <label class="form-label">Address</label>
                                 <input class="form-control" type="text" name="details" placeholder="enter address">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>City</label>
+                                <label class="form-label">City</label>
                                 <input class="form-control" type="text" name="city" placeholder="city">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>State</label>
+                                <label class="form-label">State</label>
                                 <input class="form-control" type="text" name="state" placeholder="your state">
                             </div>
 
                             <div class="col-md-6 form-group">
-                                <label>Zip</label>
+                                <label class="form-label">Zip</label>
                                 <input class="form-control" type="text" name="zip" placeholder="post code">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Phone</label>
+                                <label class="form-label">Phone</label>
                                 <input class="form-control" name="mno" type="text" placeholder="number">
                             </div>
                         </div>
@@ -256,6 +244,7 @@
                                 <label class="custom-control-label " for="Online">Online payment</label>
                             </div>
                         </div>
+                        <br>
 
                         <button class="btn btn-block btn-primary font-weight-bold py-3" type="submit">Place
                             Order</button>
@@ -426,4 +415,6 @@
 </script>
 
 
-    <%- include ('../layouts/footer.ejs') %>
+    
+
+      <%- include ('../partials/footer.ejs') %>

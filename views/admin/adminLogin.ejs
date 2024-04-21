@@ -1,61 +1,199 @@
+
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" dir="ltr">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <title>Document</title>
-</head>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body>
-  <section class="vh-100">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-              <h2 class="text-center text-dark mb-5">ADMIN LOGIN</h2>
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>OnlineKart</title>
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="../../../assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="../../../assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="../../../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../../../vendors/simplebar/simplebar.min.js"></script>
+    <script src="../../../assets/js/config.js"></script>
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link href="../../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="../../../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+    <link href="../../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+    <link href="../../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+    <link href="../../../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+    <script>
+      var phoenixIsRTL = window.config.config.phoenixIsRTL;
+      if (phoenixIsRTL) {
+        var linkDefault = document.getElementById('style-default');
+        var userLinkDefault = document.getElementById('user-style-default');
+        linkDefault.setAttribute('disabled', true);
+        userLinkDefault.setAttribute('disabled', true);
+        document.querySelector('html').setAttribute('dir', 'rtl');
+      } else {
+        var linkRTL = document.getElementById('style-rtl');
+        var userLinkRTL = document.getElementById('user-style-rtl');
+        linkRTL.setAttribute('disabled', true);
+        userLinkRTL.setAttribute('disabled', true);
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <div class="container">
+        <div class="row flex-center min-vh-100 py-5">
+          <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
+            <a
+            class="d-flex flex-center text-decoration-none mb-4" href="/">
+            <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img
+                src="../../../assets/img/icons/logo.png" alt="phoenix" width="58" /></div>
+          </a>
+            <div class="text-center mb-5">
+              <h2 class="text-1000"> <span class="fw-normal"></span>Sign In</h2>
+              <p class="text-700">Hello Admin, Welcome Back</p>
+              
+            <div class="">
               <% if(typeof message !=='undefined' ){ %>
-                <h3 style="color: red;">
-                  <%= message %>
-                </h3>
+                <span class="fs-4">
+                  
+                   <h6><span style="color: rgb(255, 0, 0);"><%=message %></span> </h6>
+                  
+                </span>
                 <% } %>
-
-
-                  <form action="" method="post" onsubmit="return allChecking()">
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                      <input type="email" id="email" name="email" class="form-control form-control-lg"
-                        placeholder="Email" onchange="emailValidate()" />
-                      <span id="Email"></span>
-                    </div>
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-                      <input type="password" id="password" class="form-control form-control-lg" name="password"
-                        placeholder="Password" onchange="passwordValidate()" />
-                      <span id="Password"></span>
-                    </div><br>
-                    <div style="display: flex; justify-content: space-between;">
-                      <button type="button" class="btn  reg_but" style="background-color: rgb(143, 216, 143);"><a
-                          class="text-decoration-none text-dark " href="/home">BACK</a></button>
-                      <button type="submit" class="btn  reg_but" value="Login" style="background-color: rgb(143, 216, 143); "
-                        onclick="emailValidate(),passwordValidate()">LOGIN</button>
-                    </div>
-                  </form>
             </div>
+            </div>
+            
+
+
+
+
+            <form action="" method="post" onsubmit="return validate()">
+              <!-- Email input -->
+             
+              <div class="mb-3 text-start"><label class="form-label" for="email">Email address</label>
+
+                <input type="email" id="email" name="email" class="form-control mb-3"
+                placeholder="Enter Email"  onchange="emailValidate()" />
+                <h6><span style="color: red;" id="Email"></span></h6>
+                </div>
+              
+              <!-- Password input -->
+              <div class="mb-3 text-start"><label class="form-label" for="email">Password</label>
+
+                <input type="password" id="password" class="form-control mb-3" name="password"
+                placeholder="Enter Password"  onchange="passwordValidate()" />
+                <h6><span style="color: red;" id="Password"></span></h6>
+              </div>
+              
+
+              
+
+
+
+                <button type="submit" class="btn btn-primary w-100" value="Login"
+                onclick="emailValidate(),passwordValidate()">Sign In</button>
+             
+            </form>
+
+
+
           </div>
         </div>
-  </section>
+      </div>
+    
+    </main><!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+  
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+
+    <script>
+     
+      // Rest of your validation functions
+  
+      function emailValidate() {
+        let email = document.getElementById("email").value;
+        if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(email) === false) {
+          document.getElementById("Email").innerHTML = "Please enter a valid email address.";
+          return false;
+        } else {
+          document.getElementById("Email").innerHTML = "";
+          return true;
+        }
+      }
+  
+    
+  
+      function passwordValidate() {
+        let password = document.getElementById("password").value;
+        if (password.length < 8) {
+          document.getElementById("Password").innerHTML = "Please enter a minimum of 8 characters.";
+          return false;
+        } else {
+          document.getElementById("Password").innerHTML = "";
+          return true;
+        }
+      }
+  
+     
+  
+      function validate() {
+        if (emailValidate() && passwordValidate()) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+  
+  
+  
+  
+  
+    </script>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
-  <script src="validation.js"></script>
 
-</body>
+
+
+
+
+    <script src="../../../vendors/popper/popper.min.js"></script>
+    <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+    <script src="../../../vendors/is/is.min.js"></script>
+    <script src="../../../vendors/fontawesome/all.min.js"></script>
+    <script src="../../../vendors/lodash/lodash.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="../../../vendors/list.js/list.min.js"></script>
+    <script src="../../../vendors/feather-icons/feather.min.js"></script>
+    <script src="../../../vendors/dayjs/dayjs.min.js"></script>
+    <script src="../../../assets/js/phoenix.js"></script>
+  </body>
 
 </html>

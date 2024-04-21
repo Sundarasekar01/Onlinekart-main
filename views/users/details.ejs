@@ -1,261 +1,268 @@
-<%- include ('../layouts/header.ejs') %>
-    <!-- <style>
-   div{
-    border: solid red 1px;
-   }
- </style> -->
-<br>
-    <!-- Breadcrumb Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="/home">Home</a>
-                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
-                    <span class="breadcrumb-item active">Shop Detail</span>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
 
 
 
-    <!-- Shop Detail Start -->
- 
-    <!-- Shop Detail Start -->
-    <div class="container-fluid pb-5">
-        <div class="row px-xl-5">
-            
-                <% for(i=0;i<detail.image.length;i++){ %>
-                    <div class="col-md-6 position-relative ">
-                      <div class="d-flex justify-content-center  p-3">
-                        <div id="img-container" class="img-cont">
-                          <img id="main-image" class="main-image " src="/uploads/<%=detail.image[i]%>" alt="">
-                        </div>
-                      </div>
-                      <div class="d-flex px-5 justify-content-center">
-                        <div class="col-2 d-flex justify-content-center mx-3">
-                          <div class="card product-alt-card p-2">
-                            <img class="product-alt-images" id="image1" onclick="changeImage(this)"
-                              src="/uploads/<%=detail.image[i]%>" alt="">
-                          </div>
-                        </div>
-                        <div class="col-2 d-flex justify-content-center mx-3">
-                          <div class="card product-alt-card p-2">
-                            <img class="product-alt-images" id="image2" onclick="changeImage(this)"
-                              src="/uploads/<%=detail.image[i+1]%>" alt="">
-                          </div>
-                        </div>
-                        <div class="col-2 d-flex justify-content-center mx-3">
-                          <div class="card product-alt-card p-2">
-                            <img class="product-alt-images" id="image3" onclick="changeImage(this)" src="/uploads/<%=detail.image[i+2]%>"
-                              alt="">
-                          </div>
-                        </div>
-                      </div>
-                    
+    <%- include('../partials/header.ejs'); %>
+      <div class="pt-5 pb-9">
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        <section class="py-0">
+          <div class="container-small">
+
+
+            <nav class="mb-2" aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                  <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
+                  <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                </ol>
+              </nav>
+              <h2 class="mb-6">Product details</h2>
+
+            <div class="row g-5 mb-5 mb-lg-8" data-product-details="data-product-details">
+              <div class="col-12 col-lg-6">
+                <div class="row g-3 mb-3">
+                 
+                    <div class="col-12 col-md-2 col-lg-12 col-xl-2">
+                    <div class="swiper-products-thumb swiper swiper-container theme-slider overflow-visible" id="swiper-products-thumb"></div>
+                  </div>
+
+
+
+                  <div class="col-12 col-md-10 col-lg-12 col-xl-10">
+
+                    <div class="d-flex align-items-center border rounded-3 text-center p-5 h-100" >
+                      <div class="swiper swiper-container theme-slider" id="main-image" class="main-image "  data-thumb-target="swiper-products-thumb" data-products-swiper='{"slidesPerView":1,"spaceBetween":16,"thumbsEl":".swiper-products-thumb"}'></div>
                     </div>
-                    <% break }%>
 
-            <div class="col-md-6 h-auto mb-30">
-                <div class="h-100  p-30 ">
-                    <br>
-                    <h2 class="text-uppercase">
-                        <%=detail.name%>
-                    </h2>
-                    <div class="d-flex mb-3">
-                        <div class="text-primary mr-2">
+                  </div>
 
-                            <% if(detail.rating) { %>
+                </div>
 
-                                <% for(let i=0; i<detail.rating;i++){ %>
-                            <small class="fas fa-star"></small>
+
+                
+
+
+              </div>
+
+
+
+              <div class="col-12 col-lg-6">
+                <div class="d-flex flex-column justify-content-between h-100">
+                 
+
+                    <div class="h-100  p-30 ">
+                        <br>
+                        <h2 class="text-uppercase">
+                            <%=detail.name%>
+                        </h2>
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+    
+                                <% if(detail.rating) { %>
+    
+                                    <% for(let i=0; i<detail.rating;i++){ %>
+                                <small class="fas fa-star " style="color: goldenrod;"></small>
+                                <% } %>
                             <% } %>
-                        <% } %>
+    
+                            </div>
+                            <!-- <small class="pt-1">Rating<%detail.rating%></small> -->
+                        </div>
+                        <h3 class="font-weight-semi-bold mb-4">₹ <%=detail.price%>
+                        </h3>
+                        <p class="mb-4">
+                            <%=detail.description%>
+                        </p>
 
-                        </div>
-                        <!-- <small class="pt-1">Rating<%detail.rating%></small> -->
-                    </div>
-                    <h3 class="font-weight-semi-bold mb-4">Rs <%=detail.price%>
-                    </h3>
-                    <p class="mb-4">
-                        <%=detail.description%>
-                    </p>
-                    <div class="d-flex mb-3">
-                        <!-- <strong class="text-dark mr-3">Sizes:</strong> -->
-                        <form>
-                            <!-- <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-1" name="size">
-                            <label class="custom-control-label" for="size-1">XS</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-2" name="size">
-                            <label class="custom-control-label" for="size-2">S</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-3" name="size">
-                            <label class="custom-control-label" for="size-3">M</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-4" name="size">
-                            <label class="custom-control-label" for="size-4">L</label>
-                        </div>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-5" name="size">
-                            <label class="custom-control-label" for="size-5">XL</label>
-                        </div> -->
-                        </form>
-                    </div>
-                   
-                    <% if(detail.stock<=5){%>
-                        <% if(detail.stock<1){%>
-                            <h6 style="color: red;">Stock Out!!</h6>
-                            <a href="/addToCart?id=<%=detail._id%>"> <button class="btn btn-primary px-3" disabled><i
-                                        class="fa fa-shopping-cart mr-1 "></i> Add To
-                                    Cart </button></a>
-                            <%}else{%>
-                                <h6 style="color: red;">Only <%=detail.stock%> left</h6>
-                                <a href="/addToCart?id=<%=detail._id%>"> <button class="btn btn-primary px-3"><i
-                                            class="fa fa-shopping-cart mr-1"></i> Add To
-                                        Cart</button></a>
-                                <%}}else{%>
+                        <div class="d-flex product-color-variants" data-product-color-variants="data-product-color-variants">
+                            <% for(i=0;i<detail.image.length;i++){ %>
+                            <div class="rounded-1 border me-2 active" data-variant="Blue" data-products-images='["/uploads/<%=detail.image[i]%>","/uploads/<%=detail.image[i+1]%>","/uploads/<%=detail.image[i+2]%>"]'><img src="/uploads/<%=detail.image[i]%>" alt="" width="38" /></div>
+                            <% break }%>
+                          </div>
+
+                          <br>
+                        
+                        <% if(detail.stock){%>
+                            <% if(detail.stock == 0){%>
+                                <h6 style="color: red;">Stock Out!!</h6>
+                                <br>
+                                <a href="/addToCart?id=<%=detail._id%>"> <button class="btn btn-primary px-3" disabled><i
+                                            class="fa fa-shopping-cart mr-1 "></i> Add To
+                                        Cart </button></a>
+                                <%}else{%>
+                                    <h6 style="color: green;">Only <%=detail.stock%> left</h6>
+                                    <br>
+
                                     <a href="/addToCart?id=<%=detail._id%>"> <button class="btn btn-primary px-3"><i
                                                 class="fa fa-shopping-cart mr-1"></i> Add To
                                             Cart</button></a>
-                                    <%}%>
-                </div>
-                <div>
-                    <h5 class="" style="color: green;">
-                        <%=message%>
-                    </h5>
+
+
+
+
+                    <a href="/addWishlist?id=<%=detail._id%>"> <button class="btn  btn-danger px-3"><i
+                        class="fa fa-heart mr-1"></i> Add To Wishlist</button></a
+
+
+                                        <%}}%>
+                    </div>
+                    <br>
+                    <div>
+                        <h5 class="" style="color: green;">
+                            <%=message%>
+                        </h5>
+                    </div>
+
+
+
+
                 </div>
 
+
+              </div>
             </div>
-        
-    </div>
-    <br>
-    <hr>
-    <div class="row px-xl-5">
-        <div class="col">
-            <div class=" p-30">
-                <div class="nav nav-tabs mb-4">
-                    <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Reviews</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Related Products</a>
-                </div>
-                <div class="tab-content">
-                    
-                    
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="media mb-4">
-                                    <div class="media-body">
-                                        <%for(i=0;i<detail.review.length;i++){%>
-                                            <h6>
-                                                <%=detail.review[i].username%>
-                                            </h6>
-                                            <p>
-                                                <%=detail.review[i].review%>
-                                            </p>
-                                            
-                                            <%}%>
-                                    </div>
-                                </div>
-                            </div>
+          </div><!-- end of .container-->
+        </section><!-- <section> close ============================-->
+        <!-- ============================================-->
 
+
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        <section class="py-0">
+          <div class="container-small">
+            <ul class="nav nav-underline mb-4" id="productTab" role="tablist">              
+              <li class="nav-item"><a class="nav-link" id="reviews-tab" data-bs-toggle="tab" href="#tab-reviews" role="tab" aria-controls="tab-reviews" aria-selected="false">Ratings &amp; reviews</a></li>
+            </ul>
+            <div class="row gx-3 gy-7">
+              <div class="col-12 col-lg-7 col-xl-8">
+
+                <div class="tab-content" id="productTabContent">
+                
+                  <div class="tab-pane " id="tab-reviews" role="tabpanel" aria-labelledby="reviews-tab">
+
+
+<% if(detail.review){%>
+
+                    <%for(i=0;i<detail.review.length;i++){%>
+                        
+                    <div class="bg-white rounded-3 p-4 border border-200">
+                      
+
+                      <div class="mb-4 hover-actions-trigger btn-reveal-trigger">
+                        <div class="d-flex justify-content-between">
+                          <h5 class="mb-2">
+                   
+                            
+                            <span class="text-800 ms-1"></span> <%=detail.review[i].username%></h5>
+                         
                         </div>
-                    </div>
+                        <p class="text-1000 mb-1"><%=detail.review[i].review%></p>
+                      </div>
+      <%}%>
+      <%}%>
 
+      <h5> No reviews here after ...</h5>
+      
 
-                    <div class="tab-pane fade" id="tab-pane-2">
-                        <div class="row">
-                            <% for(i=0;i<related.length;i++){%>
-                                        <div class="col-12 col-md-4 mb-4">
-                                            <div class="card h-100">
-                                                <a href="/view-details?id=<%=related[i]._id%>">
-                                                    <img src="/uploads/<%=related[i].image[0]%>" class="card-img-top" alt="...">
-                                                </a>
-                                                <div class="card-body">
-                                                    <ul class="list-unstyled d-flex justify-content-between">
-                                                        <li>
-                                                            <i class="text-warning fa fa-star"></i>
-                                                            <i class="text-warning fa fa-star"></i>
-                                                            <i class="text-warning fa fa-star"></i>
-                                                            <i class="text-muted fa fa-star"></i>
-                                                            <i class="text-muted fa fa-star"></i>
-                                                        </li>
-                                                        <li class="text-muted text-right">Rs <%=related[i].price%></li>
-                                                    </ul>
-                                                    <a href="/view-details?id=<%=related[i]._id%>" class="h2 text-decoration-none text-dark"> <%=related[i].name%></a>
-                                                    <p class="card-text">
-                                                       
-                                                    </p>
-                                                    
-                                                                                <a href="/addToCart?id=<%=detail._id%>"> <button class="btn btn-primary px-3"><i
-                                                                                    class="fa fa-shopping-cart mr-1"></i> Add To
-                                                                                Cart</button></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                        
-                                        <%}%>
-                        
-                                        
-                                    </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+
+
+ 
+
+
             </div>
-        </div>
-    </div>
+          </div><!-- end of .container-->
+        </section>
+
+      </div>
 
     
 
 
-  
+
+
+
+
+
+
+      <section class="py-0 mb-9">
+        <div class="container">
+          <div class="d-flex flex-between-center mb-3">
+            <div>
+              <h3>Similar Products</h3>
+              <br>
+            </div><a class="btn btn-sm btn-phoenix-primary" href="/loadShop">View all</a>
+          </div>
+          <div class="swiper-theme-container products-slider">
+            <div class="swiper swiper-container theme-slider" data-swiper='{"slidesPerView":1,"spaceBetween":16,"breakpoints":{"450":{"slidesPerView":2,"spaceBetween":16},"768":{"slidesPerView":3,"spaceBetween":16},"992":{"slidesPerView":4,"spaceBetween":16},"1200":{"slidesPerView":5,"spaceBetween":16},"1540":{"slidesPerView":6,"spaceBetween":16}}}'>
+              <div class="swiper-wrapper">
+
+                <% for(i=0;i<related.length;i++){%>
+
+                <div class="swiper-slide">
+                  <div class="position-relative text-decoration-none product-card h-100">
+                    <div class="d-flex flex-column justify-content-between h-100">
+                      <div>
+                        <div class="border border-1 rounded-3 position-relative mb-3"><img class="img-fluid" src="/uploads/<%=related[i].image[0]%>" alt="" /></div><a class="stretched-link" href="/view-details?id=<%=related[i]._id%>">
+                          <h6 class="mb-2 lh-sm line-clamp-3 product-name"><%=related[i].name%></h6>
+                        </a>
+                        <p class="fs--1">
+
+                            <% let n=related[i].rating %>
+
+                            <%  for(j=0;j<n;j++){ %>
+                              <span class="fa fa-star " style="color: goldenrod;"></span>
+                              <% } %>
+                        </p>
+                      </div>
+                      <div>
+                        <div class="d-flex align-items-center mb-1">
+                            <h5 class="text-body-emphasis  fs-9"><s class="text-muted">(₹ <%=related[i].price + 967  %> )</s>   ₹ <%=related[i].price%> </h5>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <%}%>
+
+                
+              </div>
+            </div>
+            <!-- <div class="swiper-nav">
+              <div class="swiper-button-next"><span class="fas fa-chevron-right nav-icon"></span></div>
+              <div class="swiper-button-prev"><span class="fas fa-chevron-left nav-icon"></span></div>
+            </div> -->
+          </div>
+        </div><!-- end of .container-->
+      </section><!-- <section> close ============================-->
+      <!-- ============================================-->
+
+
+
+
+
+
+
+
+
+
+
+      <%- include('../partials/footer.ejs'); %>
+
+
+
+
+
+
+      
+
+
        
-
-</div>
-
-    </div>
-    <!-- Shop Detail End -->
-
-
-
-    <!-- Products Start -->
-
-   
-<!-- jrsrdcfvgbhngfedfghgyfdsdfghufydtsdfghvgb -->
-
-
-
-
-
-    <!-- <script src="https://unpkg.com/js-image-zoom/js-image-zoom.js"></script>  -->
-    <script src="https://cdn.jsdelivr.net/npm/js-image-zoom/js-image-zoom.min.js"></script> 
-    <script src="/script/scriptadmin.js"></script>
-
-    <script>
-      const mainimage = document.getElementById("main-image")
-      function changeImage(image) {
-        mainimage.src = image.src
-        new ImageZoom(document.getElementById("img-container"), options);
-      }
-      var options = {
-        width: 300,
-        height: 350,
-        zoomWidth: 300,
-        
-
-
-
-        // required
-        // more options here
-      };
-      new ImageZoom(document.getElementById("img-container"), options);
-
-    </script>
-
-
-
-    <%- include ('../layouts/footer.ejs') %>

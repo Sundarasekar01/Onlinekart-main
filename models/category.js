@@ -5,7 +5,6 @@ const catSchema = mongoose.Schema({
     name: {
         type: String,
         unique: true,
-        uppercase: true,
         required: true,
     },
 

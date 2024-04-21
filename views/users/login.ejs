@@ -1,71 +1,234 @@
-<%- include ('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
 
-  <style>
-    span {
-      color: rgb(255, 0, 0);
+
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>OnlineKart</title>
+
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicons/favicon.ico">
+  <link rel="manifest" href="../../../assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="../../../assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="../../../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../../../vendors/simplebar/simplebar.min.js"></script>
+  <script src="../../../assets/js/config.js"></script>
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
+    rel="stylesheet">
+  <link href="../../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="../../../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+  <link href="../../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+  <link href="../../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+  <link href="../../../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+
+
+  <script>
+    var phoenixIsRTL = window.config.config.phoenixIsRTL;
+    if (phoenixIsRTL) {
+      var linkDefault = document.getElementById('style-default');
+      var userLinkDefault = document.getElementById('user-style-default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style-rtl');
+      var userLinkRTL = document.getElementById('user-style-rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
     }
-  </style>
+  </script>
+</head>
 
-  <section class="vh-80 form-box">
-    <div class="container p-3 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-
-              <h3 class="mb-5">Login</h3>
-
-              <form action="/login" method="post" onsubmit="return allChecking()">
-
-                <div class="form-outline mb-4">
-                  <!-- <label class="form-label" for="email">Email address</label> -->
-                  <input type="email" id="email" name="email" class="form-control form-control-lg"
-                    onchange="emailValidate()" placeholder="Enter your email" />
-                  <span id="Email"></span>
-                </div>
+<body>
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
 
 
 
-                <div class="form-outline mb-4">
-                  <!-- <label class="form-label" for="password">Password</label> -->
-                  <input type="password" id="password" class="form-control form-control-lg" name="password"
-                    onchange="passwordValidate()" placeholder="enter your password" />
-                  <span id="Password"></span>
-                </div>
-
-                <div class="d-flex justify-content-around align-items-center mb-4"></div>
+  <!-- ============================================-->
 
 
-                <button
-                  style="margin-bottom: 30px; width: 200px;background-color: rgb(63, 208, 63);border-radius: 20px ;padding:10px; "
-                  type="submit" class="btn" value="Login" onclick="emailValidate(),passwordValidate()">
-                  Login
-                </button>
-                <hr>
-                <a href="/forgot/forgot-p">forgot password?</a>
-                <div style="display: flex; justify-content: space-around;">
-                  <p class="mt-5"> New user<a href="/register" class="text-decoration-none text-primary"> Register
-                      here</a></p>
-                  <!-- <button class="btn btn-primary mt-5"><a href="../admin/login"
-                      class="text-decoration-none text-white">Admin Login</a></button> -->
-                </div>
-                <div class="">
-                  <% if(typeof message !=='undefined' ){ %>
-                    <span class="fs-4">
-                      <span style="color: red;">
-                        <%=message %>
-                      </span>
-                    </span>
-                    <% } %>
-                </div>
-              </form>
+  <main class="main" id="top">
+    <div class="container">
+      <div class="row flex-center min-vh-100 py-5">
+        <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3"><a
+            class="d-flex flex-center text-decoration-none mb-4" href="/">
+            <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img
+                src="../../../assets/img/icons/logo.png" alt="phoenix" width="58" /></div>
+          </a>
+          <div class="text-center mb-7">
+            <h3 class="text-1000">Sign In</h3>
+            <p class="text-700">Get access to your account</p>
+
+
+
+
+
+            <div class="">
+              <% if(typeof message !=='undefined' ){ %>
+                <span class="fs-4">
+
+                  <h6><span style="color: rgb(255, 0, 0);">
+                      <%=message %>
+                    </span> </h6>
+
+                </span>
+                <% } %>
             </div>
+
+
+            <form action="/login" method="post" onsubmit="return validate()">
+
+
+
+
+              <div class="mb-3 text-start"><label class="form-label" for="email">Email address</label>
+                <!-- <label class="form-label" for="email">Email address</label> -->
+                <input type="email" id="email" name="email" class="form-control mb-3" onchange="emailValidate()"
+                  placeholder="Enter your email" />
+                <h6><span style="color: rgb(255, 0, 0);" id="Email"></span></h6>
+
+              </div>
+
+
+              <div class="mb-3 text-start"><label class="form-label" for="password">Password</label>
+
+                <!-- <label class="form-label" for="password">Password</label> -->
+                <input type="password" id="password" class="form-control mb-3" name="password"
+                  onchange="passwordValidate()" placeholder="enter your password" />
+                <h6><span style="color: rgb(255, 0, 0);" id="Password"></span></h6>
+
+              </div>
+
+
+              <div class="form-check mb-3">
+                <label class="form-label fs--1 text-none" for="termsService">I accept the <a href="#!">terms </a>and <a
+                    href="#!">privacy policy</a></label>
+              </div>
+
+
+
+              <button class="btn btn-primary w-100 mb-3" type="submit" onclick="emailValidate(),passwordValidate()">Sign
+                In</button>
+
+
+            
+
+                <div class="row g-3 mb-3">
+                  <div class="col-sm-6">
+                    <a class="fs--1 fw-bold" href="/register">Create an account</a>
+                  </div>
+  
+                 
+                  <div class="col-sm-6">
+                    <a class="fs--1 fw-bold" href="/forgot/forgot-p">Forgot Password?</a>
+                  </div>
+                </div>
+
+            </form>
+
+
+
+
+
+
+
+
+
+
+
+           
+
+
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  </form>
-  <script src="validation.js"></script>
 
-  <%- include ('../layouts/footer.ejs') %>
+
+  </main>
+
+
+
+  <script>
+
+    // Rest of your validation functions
+
+    function emailValidate() {
+      let email = document.getElementById("email").value;
+      if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(email) === false) {
+        document.getElementById("Email").innerHTML = "Please enter a valid email address.";
+        return false;
+      } else {
+        document.getElementById("Email").innerHTML = "";
+        return true;
+      }
+    }
+
+
+
+    function passwordValidate() {
+      let password = document.getElementById("password").value;
+      if (password.length < 8) {
+        document.getElementById("Password").innerHTML = "Please enter a minimum of 8 characters.";
+        return false;
+      } else {
+        document.getElementById("Password").innerHTML = "";
+        return true;
+      }
+    }
+
+
+
+    function validate() {
+      if (emailValidate() && passwordValidate()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+
+
+
+
+  </script>
+
+
+
+
+  <script src="../../../vendors/popper/popper.min.js"></script>
+  <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+  <script src="../../../vendors/is/is.min.js"></script>
+  <script src="../../../vendors/fontawesome/all.min.js"></script>
+  <script src="../../../vendors/lodash/lodash.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="../../../vendors/list.js/list.min.js"></script>
+  <script src="../../../vendors/feather-icons/feather.min.js"></script>
+  <script src="../../../vendors/dayjs/dayjs.min.js"></script>
+  <script src="../../../assets/js/phoenix.js"></script>
+</body>
+
+</html>

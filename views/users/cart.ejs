@@ -1,279 +1,236 @@
-<%- include ('../layouts/header.ejs') %>
 
-<br>
-    <!-- Breadcrumb Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <div class="col-12">
-                <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="/home">Home</a>
-                    <span class="breadcrumb-item active">Shopping Cart</span>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
-
-    <% if(cartProducts.item.length==0){%>
-        <style>
-            @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
-
-            /* body {
-
-                background-color: #000000;
-            }
- */
+<%- include ('../partials/header.ejs') %>
 
 
 
-            .card {
-                margin-bottom: 100px;
-                background-color: transparent;
-                border: 0;
-                -webkit-transition: all .3s ease;
-                transition: all .3s ease;
-                letter-spacing: .5px;
-                border-radius: 8px;
-                -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
-                box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
-            }
 
-            .card .card-header {
-                background-color: #000000;
-                border-bottom: none;
-                padding: 24px;
-                border-bottom: 1px solid #000000;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-            }
-
-            .card-header:first-child {
-                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-            }
+  
 
 
-            .card .card-body {
-                padding: 30px;
-                background-color: transparent;
-            }
+               
 
-            .letter {
-                color: aliceblue;
-            }
+                <section class="pt-5 pb-9">
+                    <div class="container-small cart">
+                      <nav class="mb-2" aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                          <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
+                          <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Default</li>
+                        </ol>
+                      </nav>
+                      <h2 class="mb-6">Cart</h2>
 
-            .btnn {
-                text-align: center;
-                background-color: #cbb739 !important;
-                padding: 20px;
-                border-radius: 20px;
-                font-weight: 200;
-                color: rgb(0, 0, 0);
-            }
-        </style>
-        <div class="container-fluid">
-            
-            
+                      <div class="row g-5">
 
-                                 <div class="d-flex justify-content-center mt-5 mb-5 ">
-                                        
-                                        
-                                        <lottie-player class="" src="https://assets9.lottiefiles.com/packages/lf20_qh5z2fdq.json"  background="transparent"  speed="1"  style="width: 350px; height: 350px;"  loop  autoplay>
-                                    </lottie-player>
-                                
-                                    
-                                </div>
-                                
-                                
+                        <% if(cartProducts.item.length==0){%>
+                     
+                
+                          <div class="d-flex justify-content-center mt-3">
 
-                            
-                      
-                   
+                            <h4>No products in Cart</h4>
+                              </div>
+                               
+
+                    
+                    
+                            <%}else{%>
 
 
 
-        </div>
-        <%}else{%>
 
-            <!-- Cart Start -->
-            <div class="container-fluid">
-                <div class="row px-xl-5">
-                    <div class="col-lg-8 table-responsive mb-5">
-                        <table class="table table-light table-borderless table-hover text-center mb-0">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>image</th>
-                                    <th>Name</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Remove</th>
-                                </tr>
-                            </thead>
-                            <tbody class="align-middle">
+                        <div class="col-12 col-lg-10">
+
+                          <div id="cartTable" data-list='{"valueNames":["products","color","size","price","quantity","total"],"page":10}'>
+                            <div class="table-responsive scrollbar mx-n1 px-1">
+
+                              <table class="table fs-9 mb-0 border-top border-translucent">
+                                <thead>
+                                  <tr>
+                                    <th class="sort white-space-nowrap align-middle fs-10" scope="col"></th>
+                                    <th class="sort white-space-nowrap align-middle" scope="col" style="min-width:250px;">PRODUCTS</th>
+                                    <th class="sort align-middle text-end" scope="col" style="width:300px;">PRICE</th>
+                                    <th class="sort align-middle ps-5" scope="col" style="width:200px;">QUANTITY</th>
+                                    <th class="sort align-middle text-end" scope="col" style="width:250px;">TOTAL</th>
+                                    <th class="sort text-end align-middle pe-0" scope="col"></th>
+                                  </tr>
+                                </thead>
                                 <% for(let i=0;i<cartProducts.item.length;i++){ %>
 
-                                    <tr>
-                                        <td class="align-middle"><a
-                                                href="/view-details?id=<%=cartProducts.item[i].productId._id%>"><img
-                                                    src="/uploads/<%=cartProducts.item[i].productId.image[0]%>" alt=""
-                                                    style="width: 50px;"></a></td>
-                                        <td class="align-middle">
-                                            <%=cartProducts.item[i].productId.name%>
-                                        </td>
-                                        <td id="price" class="align-middle">
-                                            <%=cartProducts.item[i].productId.price%>
-                                        </td>
-                                        <td class="align-middle ">
+                                <tbody class="list" id="cart-table-body">
+                                  <tr class="cart-table-row btn-reveal-trigger">
+                                    <td class="align-middle white-space-nowrap py-0"><a class="d-block border border-translucent rounded-2" href="/view-details?id=<%=cartProducts.item[i].productId._id%>"><img src="/uploads/<%=cartProducts.item[i].productId.image[0]%>" alt="" width="53" /></a></td>
+                                    <td class="products align-middle"><a class="fw-semibold mb-0 line-clamp-2" href="/view-details?id=<%=cartProducts.item[i].productId._id%>"><%=cartProducts.item[i].productId.name%></a></td>
+                                    <td class="price align-middle text-body fs-9 fw-semibold text-end"> <%=cartProducts.item[i].productId.price%></td>
+                                    <!-- <td class="quantity align-middle fs-8 ps-5">
+                                      <div class="input-group input-group-sm flex-nowrap" data-quantity="data-quantity"><button class="btn btn-sm px-2" data-type="minus"  onclick="update('<%= cartProducts.item[i].productId._id %>',0,'<%=i%>')">-</button><input class="form-control text-center input-spin-none bg-transparent border-0 px-0" name="quantity" type="number" min="1" aria-label="" value="<%=cartProducts.item[i].qty%>"  id='<%=cartProducts.item[i].productId._id %>' disabled/><button class="btn btn-sm px-2" data-type="plus"  onclick="update('<%= cartProducts.item[i].productId._id %>','<%-cartProducts.item[i].productId.stock%>','<%=i%>')">+</button></div>
+                                      
+                                    </td> -->
+
+                                    <td class="quantity align-middle fs-8 ps-5 ">
 
 
-                                            <div class="d-flex  ms-4" style="max-width: 160px; margin-left: 20%;">
-                                                <button class=" button hollow circle btn-primary" style="height: 38px;"
-                                                    onclick="update('<%= cartProducts.item[i].productId._id %>',0,'<%=i%>')">
-                                                    <i class="fas fa-minus"></i>
-                                                </button>
+                                        <div class="input-group input-group-sm flex-nowrap" >
+                                            <button class=" btn btn-sm px-2" 
+                                                onclick="update('<%= cartProducts.item[i].productId._id %>',0,'<%=i%>')">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
 
-                                                <div class="form-outline" style=" width: 150px;">
-                                                    <input min="1" name="quantity" style="text-align: center;"
-                                                        value="<%=cartProducts.item[i].qty%>" type="number" disabled
-                                                        class="form-control"
-                                                        id='<%=cartProducts.item[i].productId._id %>' />
+                                            <div class="form-outline" style=" width: 75px;">
+                                                <input min="1" name="quantity" 
+                                                    value="<%=cartProducts.item[i].qty%>" type="number" disabled
+                                                    class="form-control text-center input-spin-none  "
+                                                    id='<%=cartProducts.item[i].productId._id %>' />
 
-                                                </div>
-                                                <button class="button hollow circle btn-primary" style="height: 38px;"
-                                                    onclick="update('<%= cartProducts.item[i].productId._id %>','<%-cartProducts.item[i].productId.stock%>','<%=i%>')">
-
-                                                    <i class="fas fa-plus"></i>
-                                                </button>
                                             </div>
+                                            <button class="btn btn-sm px-2"
+                                                onclick="update('<%= cartProducts.item[i].productId._id %>','<%-cartProducts.item[i].productId.stock%>','<%=i%>')">
 
-                                        </td>
-                                        <td id="<%=i%>" class="align-middle">
-                                            <%=cartProducts.item[i].productId.price*cartProducts.item[i].qty%>
-                                        </td>
-                                        <td class="align-middle"><a
-                                                href="/delete-cart?id=<%= cartProducts.item[i].productId._id %>"><button
-                                                    class="btn btn-sm btn-danger"><i
-                                                        class="fa fa-times"></i></button></a></td>
-                                    </tr>
-                                    <% }%>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-lg-4">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
 
-                        <h5 class="section-title position-relative text-uppercase mb-3"><span
-                                class="bg-white pr-3">Cart Summary</span></h5>
-                        <div class=" p-30 mb-5">
-                            <div class="pt-2">
-                                <div class="d-flex justify-content-between mt-2">
-                                    <h5>Total</h5>
-                                    <h5 id="total">Rs <%=cartProducts.totalPrice%>
-                                    </h5>
-                                </div>
+                                    </td>
+                                    <td class="total align-middle fw-bold text-body-highlight text-end" id="<%=i%>"> <%=cartProducts.item[i].productId.price*cartProducts.item[i].qty%></td>
+                                    <td class="align-middle white-space-nowrap text-end pe-0 ps-3"><a href="/delete-cart?id=<%= cartProducts.item[i].productId._id %>"><button class="btn btn-sm text-body-tertiary text-opacity-85 text-body-tertiary-hover me-2"><span class="fas fa-trash"></span></button></a></td>
+                                  </tr>
+                                  
+                                </tbody>
 
-                                <a href="<%if(cartProducts.totalPrice==0){%>/loadCart<%}else{%>/loadCheckout<%}%>"><button
-                                        class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To
-                                        Checkout</button></a>
+                                <% }%>
+                              </table>
                             </div>
+                          </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <%}%>
-                <!-- Cart End -->
+                        <div class="col-12 col-lg-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <div class="d-flex flex-between-center mb-3">
+                                <h3 class="card-title mb-0">Summary</h3>
+                              </div>
+
+                              <div>
+                               
+                            
+                                <div class="d-flex justify-content-between">
+                                  <p class="text-body fw-semibold">Shipping Cost :</p>
+                                  <p class="text-body-emphasis fw-semibold">Free</p>
+                                </div>
+                              </div>
+                            
+                              <div class="d-flex justify-content-between border-y border-dashed py-3 mb-4">
+                               
+                                <h4 class="mb-0">Total :</h4>
+                                <h4 class="mb-" id="total">Rs <%=cartProducts.totalPrice%></h4>
+
+                              </div><a href="<%if(cartProducts.totalPrice==0){%>/loadCart<%}else{%>/loadCheckout<%}%>"><button class="btn btn-primary w-100">Proceed to check out<span class="fas fa-chevron-right ms-1 fs-10"></span></button></a>
+                            </div>
+                          </div>
+                        </div>
+
+                        <%}%>
+                      </div>
+
                 
+                    </div>
+                  </section>
 
-                <!-- Back to Top -->
 
 
-                <script>
-                    jQuery(document).ready(function () {
-                        // This button will increment the value
-                        $('[data-quantity="plus"]').click(function (e) {
-                            // Stop acting like a button
-                            e.preventDefault();
-                            // Get the field name
-                            fieldName = $(this).attr('data-field');
-                            // Get its current value
-                            Val = $('input[name=' + fieldName + ']').val()
-                            console.log(Val);
-                            var values = Val.split(',')
-                            var currentVal = parseInt(values[0])
-                            var stock = parseInt(values[1])
-                            console.log(currentVal, stock);
-                            // If is not undefined
-                            if (!isNaN(currentVal)) {
-                                // Increment
-                                if (currentVal == stock) {
+                  <%- include ('../partials/footer.ejs') %>
 
-                                } else {
-                                    $('input[name=' + fieldName + ']').val(currentVal + 1);
-                                }
-                            } else {
-                                // Otherwise put a 0 there
-                                $('input[name=' + fieldName + ']').val(0);
-                            }
-                        });
-                        // This button will decrement the value till 0
-                        $('[data-quantity="minus"]').click(function (e) {
-                            // Stop acting like a button
-                            e.preventDefault();
-                            // Get the field name
-                            fieldName = $(this).attr('data-field');
-                            // Get its current value
-                            Val = $('input[name=' + fieldName + ']').val()
-                            console.log(Val);
-                            var values = Val.split(',')
-                            var currentVal = parseInt(values[0])
-                            // If it isn't undefined or its greater than 0
-                            if (!isNaN(currentVal) && currentVal > 1) {
-                                // Decrement one
-                                $('input[name=' + fieldName + ']').val(currentVal - 1);
-                            } else {
-                                // Otherwise put a 0 there
-                                $('input[name=' + fieldName + ']').val(1);
-                            }
-                        });
-                    });
 
-                    function update(id, plus, amt) {
 
-                        currentqty = document.getElementById(id)
-                        console.log(plus, amt);
-                        if (plus) {
-                            if (currentqty.value < parseInt(plus)) {
-                                currentqty.parentNode.querySelector('input[type=number]').stepUp();
-                            }
-                        } else {
-                            currentqty.parentNode.querySelector('input[type=number]').stepDown()
-                        }
-                        setTimeout(() => {
-                            console.log("currrent====" + currentqty.value);
-                            console.log('qty==' + currentqty.value);
-                            let qty = document.getElementById(id).value;
-                            console.log(currentqty.value, plus);
-                            if (currentqty.value == plus && currentqty.value == 0) {
-                                console.log(currentqty.value, plus);
-                            } else {
+                  
+    <script>
+        jQuery(document).ready(function () {
+            // This button will increment the value
+            $('[data-quantity="plus"]').click(function (e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                Val = $('input[name=' + fieldName + ']').val()
+                console.log(Val);
+                var values = Val.split(',')
+                var currentVal = parseInt(values[0])
+                var stock = parseInt(values[1])
+                console.log(currentVal, stock);
+                // If is not undefined
+                if (!isNaN(currentVal)) {
+                    // Increment
+                    if (currentVal == stock) {
 
-                                $.ajax({
-                                    url: '/updateCart',
-                                    type: 'POST',
-                                    data: { quantity: qty, _id: id },
-                                    success: function (data) {
-                                        console.log(data.test);
-                                        document.getElementById("total").innerHTML = "Rs " + data.test;
-                                        console.log(data.test);
-                                        console.log(qty * data.price);
-                                        console.log(amt);
-                                        document.getElementById(amt).innerHTML = qty * data.price;
-                                    },
-                                    error: function (jqXHR, textStatus, errorThrown) {
-                                        console.log(textStatus, errorThrown);
-                                    }
-                                })
-                            }
-                        }, 50);
+                    } else {
+                        $('input[name=' + fieldName + ']').val(currentVal + 1);
                     }
-                </script>
-                <%- include ('../layouts/footer.ejs') %>
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name=' + fieldName + ']').val(0);
+                }
+            });
+            // This button will decrement the value till 0
+            $('[data-quantity="minus"]').click(function (e) {
+                // Stop acting like a button
+                e.preventDefault();
+                // Get the field name
+                fieldName = $(this).attr('data-field');
+                // Get its current value
+                Val = $('input[name=' + fieldName + ']').val()
+                console.log(Val);
+                var values = Val.split(',')
+                var currentVal = parseInt(values[0])
+                // If it isn't undefined or its greater than 0
+                if (!isNaN(currentVal) && currentVal > 1) {
+                    // Decrement one
+                    $('input[name=' + fieldName + ']').val(currentVal - 1);
+                } else {
+                    // Otherwise put a 0 there
+                    $('input[name=' + fieldName + ']').val(1);
+                }
+            });
+        });
+
+        function update(id, plus, amt) {
+
+            currentqty = document.getElementById(id)
+            console.log(plus, amt);
+            if (plus) {
+                if (currentqty.value < parseInt(plus)) {
+                    currentqty.parentNode.querySelector('input[type=number]').stepUp();
+                }
+            } else {
+                currentqty.parentNode.querySelector('input[type=number]').stepDown()
+            }
+            setTimeout(() => {
+                console.log("currrent====" + currentqty.value);
+                console.log('qty==' + currentqty.value);
+                let qty = document.getElementById(id).value;
+                console.log(currentqty.value, plus);
+                if (currentqty.value == plus && currentqty.value == 0) {
+                    console.log(currentqty.value, plus);
+                } else {
+
+                    $.ajax({
+                        url: '/updateCart',
+                        type: 'POST',
+                        data: { quantity: qty, _id: id },
+                        success: function (data) {
+                            console.log(data.test);
+                            document.getElementById("total").innerHTML = "Rs " + data.test;
+                            console.log(data.test);
+                            console.log(qty * data.price);
+                            console.log(amt);
+                            document.getElementById(amt).innerHTML = qty * data.price;
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(textStatus, errorThrown);
+                        }
+                    })
+                }
+            }, 50);
+        }
+    </script>
+
+  
+    

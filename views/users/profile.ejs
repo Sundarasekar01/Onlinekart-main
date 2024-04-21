@@ -1,300 +1,371 @@
-<%- include('../layouts/header.ejs') %>
+<%- include('../partials/header.ejs') %>
 
 
-<br>
-<div class="container-fluid">
-    <div class="row px-xl-5">
-        <div class="col-12">
-            <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="/home">Home</a>
-                
-                <span class="breadcrumb-item active">Profile</span>
-            </nav>
+
+
+
+
+  <section class="pt-1 pb-9">
+    <div class="container-small">
+      <nav class="mb-2" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
+          <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Default</li>
+        </ol>
+      </nav>
+       <br>
+      <div class="row align-items-center justify-content-between g-3 mb-4">
+        <div class="col-auto">
+          <h2 class="mb-0">Profile</h2>
         </div>
-    </div>
-</div>
+        <div class="col-auto">
+          <div class="row g-2 g-sm-3">
+            
+            <a href="/editUser">
+            <button class="btn btn-primary">
+              <span class="fas fa-edit me-2"></span>Edit Profile
+              </button>            </a>
+      
 
-
-<br>
-
-<div class="container">
-  <div class="row">
-    <div class="col-sm-3 align-items-stretch">
-      <div class="card cart-detail">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <button class="nav-link active" id="v-pills-home-tab" data-toggle="pill" data-target="#v-pills-home"
-            type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</button>
-          <button class="nav-link" id="v-pills-profile-tab" data-toggle="pill" data-target="#v-pills-profile"
-            type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">My Orders</button>
-          <button class="nav-link" id="v-pills-messages-tab" data-toggle="pill" data-target="#v-pills-messages"
-            type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Addresses</button>
-          <!-- <button class="nav-link" id="v-pills-settings-tab" data-toggle="pill" data-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"></button> -->
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-sm-9 ">
-      <div class="tab-content align-items-stretch" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-          <div class="d-flex justify-content-between">
-            <div class="card" style="width: 16rem;background-color: rgb(103, 187, 104);border-radius:5px;">
-              <div class="card-body ">
-                <h4 class="card-title "> Wallet Balance</h4>
-                <p class="card-text ">Rs <%-userData.wallet%></p>
-              </div>
-            </div>
-            <div class="card" style="width: 16rem;background-color: rgb(213, 214, 216);border-radius:5px;">
-              <div class="card-body ">
-                <h4 class="card-title"> Cart Items</h4>
-                <p class="card-text"><%-userData.cart.item.length%></p>
-              </div>
-            </div>
-            <div class="card" style="width: 16rem;background-color: rgb(238, 10, 10);border-radius:5px;">
-              <div class="card-body ">
-                <h4 class="card-title text-light"> Wishlist items</h4>
-                <p class="card-text text-light"><%-userData.wishlist.item.length%></p>
-              </div>
-            </div>
-          </div>
+    
 
-          <div class="card cart-detail mt-3" style="border-radius: 15px;background-color: rgb(255, 255, 255);">
-            <form action="" style="margin-left: 60px" ; method="" id="form" onsubmit="return onSubmitFunction()">
-              <div class="mb-2 row mt-2 pt-5">
-                <input type="hidden" name="id" value="">
-                <label for="staticEmail" class="col-sm-3 col-form-label">Name:</label>
-                <div class="col-sm-6">
-                  <span style="font-weight: 600;font-size: larger;">
-                    <%=userData.name %>
-                  </span>
-                </div>
-              </div>
+      <div class="row g-3 mb-6">
+        <div class="col-12 col-lg-8">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="border-bottom border-dashed pb-4">
+                <div class="row align-items-center g-3 g-sm-5 text-center text-sm-start">
+                  <div class="col-12 col-sm-auto"><input class="d-none" id="avatarFile" type="file" /><label class="cursor-pointer avatar avatar-5xl" for="avatarFile"><img class="rounded-circle" src="../../../assets/img/team/avatar.webp" alt="" /></label></div>
+                  <div class="col-12 col-sm-auto flex-1">
 
-              <div class="mb-3 row ">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Email:</label>
-                <div class="col-sm-6">
-                  <span style="font-weight: 500;">
-                    <%=userData.email %>
-                  </span>
-                </div>
-              </div>
+                   
+                      <div class="col-auto">
+                        <h5 class="text-body-highlight mb-0"><br></h5>
+                      </div>
+                      <div class="col-auto"><h3><%=userData.name %></h3></div>
+                  
+<br>
+                   
+                      <div class="col-auto">
+                        <h5 class="text-body-highlight mb-0">Email</h5>
+                      </div>
+                      <div class="col-auto"><a class="lh-1" href=""><%=userData.email %></a></div>
+                   
+<br>
+                   
+                      <div class="col-auto">
+                        <h5 class="text-body-highlight mb-0">Mobile</h5>
+                      </div>
+                      <div class="col-auto"><a class="lh-1" href=""> <%=userData.mobile %></a></div>
+                   
+                    
+          
+                   
 
-              <div class="mb-3 row">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Mobile:</label>
-                <div class="col-sm-6">
-                  <div class="input-group mb-3">
-                    <span style="font-weight: 500;">
-                      <%=userData.mobile %>
-                    </span>
                   </div>
                 </div>
               </div>
-              <p class="text-danger"></p>
-              <div style="margin-bottom: 2%; margin-left: 43%;">
-                <a href="/editUser" class="btn btn-success btn-sm mt-2"> Edit</a>
-
+              <div class="d-flex flex-between-center text-center pt-4">
+                <div>
+                  <h6 class="mb-2 text-body-secondary">Wallet Amount</h6>
+                  <h4 class="fs-3 text-body-highlight mb-0"><%-userData.wallet%></h4>
+                </div>
+                <div class="text-center">
+                  <h6 class="mb-2 text-body-secondary">Wishlist Products</h6>
+                  <h4 class="fs-3 text-body-highlight mb-0"><%-userData.wishlist.item.length%></h4>
+                </div>
+                <div class="text-center">
+                  <h6 class="mb-2 text-body-secondary">Cart Products</h6>
+                  <h4 class="fs-3 text-body-highlight mb-0"><%-userData.cart.item.length%></h4>
+                </div>
               </div>
-            </form>
+            </div>
           </div>
-
-          <br>
         </div>
+        <div class="col-12 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <div class="border-bottom border-dashed">
+                <h4 class="mb-3">Default Address</h4>
+              </div>
 
-        <div class="tab-pane fade bg-light" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
-          style="border-radius: 15px;">
-          <section class="container ">
-            <div class="table-responsive">
-              <table class="table mb-5">
-                <thead class="bg-yellow-200">
-                  <tr>
 
-                    <th>Order Id</th>
-                    <th>Date Purchased</th>
-                    <th>Payment</th>
-                    <th>Amount</th>
-                    <th>Action</th>
-                    <th>Orders</th>
-                  </tr>
-                </thead>
-                <% for(let key of order){ %>
-                  <tbody>
-                    <td>
-                      <%=key._id%>
-                    </td>
-                    <td>
-                      <%=key.createdAt.toDateString()%>
-                    </td>
-                    <td>
-                      <%=key.payment.method%>
-                    </td>
-                    <td>
-                      <%=key.payment.amount%>
-                    </td>
-                    <td>
-                      <% if(key.status=="Delivered" ){%>
-                        <% const currentDate=new Date(); const cutoffDate=new Date();
-                          cutoffDate.setDate(currentDate.getDate() - 14); const createdAtDate=new Date(key.createdAt);
-                          if (createdAtDate <=cutoffDate) { %>
-                          <button style="display: block;" type="button" class="btn btn-danger " disabled>return
-                            item</button>
-                          <a style="color: blue;" href="/writeReview?id=<%=key._id%>">leave a review</a>
+              <div class="pt-4 mb-7 mb-lg-4 mb-xl-7">
+                <div class="row justify-content-between">
+                  <div class="col-auto">
+                    <h5 class="text-body-highlight">Address</h5>
+                  </div>
 
-                          <% } else { %>
-                            <a style="display: block;" href="/returnOrder?id=<%=key._id%>"
-                              class="btn btn-danger">Return Item</a>
-                              <a style="display: block;" href="/writeReview?id=<%=key._id%>"
-                              class="btn btn-success">Add Review</a>
-                           
-                            <% } %>
-                              <%} else if(key.status=="cancelled" ){%>
-                                <h6>cancelled</h6>
-                                <%}else if(key.status=="returned" ){%>
-                                  <h6>returned</h6>
-                                  <%}else{%>
-                                    <a href="/cancelorder?id=<%=key._id%>" class="btn btn-danger"> cancel </a>
-                                    <%}%>
-                    </td>
-                    <td>
-                      <a href="/vieworder?id=<%=key._id%>" class="btn btn-primary">details</a>
-                    </td>
-                  </tbody>
+                  <% if (userAddress.length > 0) { %>
+
+                    <div class="col-auto">
+                      <p class="text-body-secondary"> <%= userAddress[0].firstname %> <%= userAddress[0].lastname %> <br /> <%= userAddress[0].address %>,<br>
+                        <%= userAddress[0].city %>,<br>
+                        <%= userAddress[0].state %> - <%= userAddress[0].zip %><br>
+                        <%= userAddress[0].country %>. <br> <%= userAddress[0].mobile %></p>
+                    </div>
+                  
                   <% } %>
+                  
 
-              </table>
+                </div>
+              </div>
               
             </div>
-          </section>
+          </div>
         </div>
-        <div class="tab-pane fade " id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-          <button type="button" style="margin-left: 2%;" class="btn btn-success " data-toggle="modal"
-            data-target="#exampleModal">
-            Add Address
-          </button>
-          <!-- modal -->
-          <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add Adress</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form method="post" action="/addAddress" class="colorlib-form">
-                    <div class="row">
+      </div>
+      <div>
 
-                      <label>Name *</label>
-                      <input type="text" class="form-control" name="firstname" placeholder="First name" required>
-
-                      <label>Last Name *</label>
-                      <input type="text" class="form-control" name="lastname" placeholder="Last name" required>
+        <div class="scrollbar">
+          <ul class="nav nav-underline fs-9 flex-nowrap mb-3 pb-1" id="myTab" role="tablist">
+            <li class="nav-item "><a class="nav-link text-nowrap active" id="orders-tab" data-bs-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="true"><span class="fas fa-shopping-cart me-2"></span>Orders <span class="text-body-tertiary fw-normal"> </span></a></li>
+            <li class="nav-item me-3"><a class="nav-link text-nowrap" id="address-tab" data-bs-toggle="tab" href="#tab-address" role="tab" aria-controls="tab-address" aria-selected="true"><span class="fas fa-star me-2"></span>Shipping Info<span class="text-body-tertiary fw-normal"> </span></a></li>
+     
+          </ul>
+        </div>
 
 
 
-                      <label>Country *</label>
-                      <input type="text" class="form-control" name="country" placeholder="Country" required>
-
-                      <label>address *</label>
-                      <input type="text" class="form-control" placeholder="Address" name="address" required>
+        <div class="tab-content" >
 
 
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <label>Town / City *</label>
-                          <input type="text" class="form-control" name="city" placeholder="City" required>
-                        </div>
+     
 
-                        <div class="col-sm-6">
-                          <label>State / County *</label>
-                          <input type="text" class="form-control" name="state" placeholder="State" required>
-                        </div>
-                      </div>
+         
+          <div class="tab-pane fade show active" id="tab-orders" role="tabpanel" aria-labelledby="orders-tab">
+            <div class="border-top border-bottom border-translucent" id="profileOrdersTable" data-list='{"valueNames":["order","status","delivery","date","total"],"page":6,"pagination":true}'>
+              <div class="table-responsive scrollbar">
 
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <label>Postcode / ZIP *</label>
-                          <input type="text" class="form-control" name="zip" placeholder="Postcode/ZIP" required>
-                        </div>
-
-                        <div class="col-sm-6">
-                          <label>Phone *</label>
-                          <input type="tel" class="form-control" name="mno" placeholder="Phone" required>
-                        </div>
-                      </div>
-
-                      <br>
-                      <!-- <button type="submit" class="btn btn-success rounded-2 shadow  ">
-                       Save Address
-                     </button> -->
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-                </form>
+                <table class="table mb-5">
+                  <thead class="bg-yellow-200">
+                    <tr>
+  
+                      <th class=" align-middle text-start" scope="col" style="width:20%; min-width:160px">Order Id</th>
+                      <th class=" align-middle text-start" scope="col"  style="width:20%; min-width:160px">Date Purchased</th>
+                      <th class=" align-middle text-start" scope="col"  style="width:20%; min-width:160px">Payment</th>
+                      <th class=" align-middle text-start" scope="col"  style="width:20%; min-width:160px">Amount</th>
+                      <th class=" align-middle text-start" scope="col"  style="width:20%; min-width:160px">Action</th>
+                      <th class=" align-middle text-start" scope="col"  style="width:20%; min-width:160px">Orders</th>
+                    </tr>
+                  </thead>
+                  <% for(let key of order){ %>
+                    <tbody>
+                      <td>
+                        <%=key._id%>
+                      </td>
+                      <td>
+                        <%=key.createdAt.toDateString()%>
+                      </td>
+                      <td>
+                        <%=key.payment.method%>
+                      </td>
+                      <td>
+                        <%=key.payment.amount%>
+                      </td>
+                      <td>
+                        <% if(key.status=="Delivered" ){%>
+                          <% const currentDate=new Date(); const cutoffDate=new Date();
+                            cutoffDate.setDate(currentDate.getDate() - 14); const createdAtDate=new Date(key.createdAt);
+                            if (createdAtDate <=cutoffDate) { %>
+                            <a style="display: block;"  class="btn btn-secondary " disabled>Return
+                              item</a>
+                              <br>
+                            <a  href="/writeReview?id=<%=key._id%>"  class="btn btn-info">Add Review</a>
+  
+                            <% } else { %>
+                              <a style="display: block;" href="/returnOrder?id=<%=key._id%>"
+                                class="btn btn-secondary">Return Item</a>
+                                <a style="display: block;" href="/writeReview?id=<%=key._id%>"
+                                class="btn btn-info">Add Review</a>
+                             
+                              <% } %>
+                                <%} else if(key.status=="cancelled" ){%>
+                                  <h6>cancelled</h6>
+                                  <%}else if(key.status=="returned" ){%>
+                                    <h6>returned</h6>
+                                    <%}else{%>
+                                      <a href="/cancelorder?id=<%=key._id%>" class="btn btn-danger"> Cancel Order </a>
+                                      <%}%>
+                      </td>
+                      <td>
+                        <a href="/vieworder?id=<%=key._id%>" class="btn btn-primary">details</a>
+                      </td>
+                    </tbody>
+                    <% } %>
+  
+                </table>
+                
               </div>
+            
             </div>
           </div>
-          <div class="row">
-            <%if(userAddress.length>0){
-              for(let key of userAddress){%>
-              <div class="col-md-12">
-                <div class="card cart-detail border-gray  mt-2 mb-3" style="padding: 30px;border-radius: 15px;">
-                  <span class="h5">
-                    <%=key.firstname%>
-                      <%=key.lastname%>
-                  </span>
-                  <div class="pr-2">
-                    <%=key.address%>,<br>
-                      <%=key.city%>,<br>
-                        <%=key.state%><br>
-                          <%=key.country%>
-                            <br> Pin:<%=key.zip%>,<br> Phone:<%=key.mobile%>
-                                <br><br>
-                                <a href="/edit-address?id=<%=key._id%>"><input type="button" value="Edit"
-                                    class="btn btn-info btn-sm "></a>
-                                <a href="/delete-address?id=<%=key._id%>"><input type="button" value="Delete"
-                                    class="btn btn-dark btn-sm "></a>
+        
+        
+          <div class="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="address-tab">
+            <br>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addAddress"><span
+                class="fas fa-plus me-2"></span>Add Address</button>
+          
+            <br>
+          
+          
+            <div class="row">
+              <%if(userAddress.length>0){
+                for(let key of userAddress){%>
+                <div class="col-md-4">
+                  <div class="card cart-detail border-gray  mt-2 mb-3" style="padding: 30px;border-radius: 15px;">
+                    <span class="h5">
+                      <%=key.firstname%>
+                        <%=key.lastname%>
+                    </span>
+                    <div class="pr-2">
+                      <%=key.address%>,<br>
+                        <%=key.city%>,<br>
+                          <%=key.state%> - <%=key.zip%> <br>
+                              <%=key.country%>
+                                <br>+91 <%=key.mobile%>
+                                  <br><br>
+                                  <a href="/edit-address?id=<%=key._id%>"><input type="button" value="Edit"
+                                      class="btn btn-info btn-sm "></a>
+                                  <a href="/delete-address?id=<%=key._id%>"><input type="button" value="Delete"
+                                      class="btn btn-dark btn-sm "></a>
+                    </div>
                   </div>
+          
+          
                 </div>
-
-
-              </div>
-              <%}%>
                 <%}%>
-
+                  <%}%>
+          
+            </div>
+   
+          
           </div>
 
-        </div>
 
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...
         </div>
+      </div>
+    </div><!-- end of .container-->
+  </section>
+
+
+ 
+
+
+
+<div class="modal fade" id="addAddress" tabindex="-1" aria-labelledby="verticallyCenteredModalLabel"
+  style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="verticallyCenteredModalLabel">Add new address</h5>
+
+        <button type="button" class="btn p-1" data-dismiss="modal" aria-label="Close">
+          <svg class="svg-inline--fa fa-times fs-9" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"></path>
+          </svg>
+        </button>
 
       </div>
+
+
+      <div class="modal-body">
+        <form method="post" action="/addAddress" class="colorlib-form">
+          <div class="row">
+
+
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="form-label">First Name </label>
+                <input type="text" class="form-control" name="firstname" placeholder="First name" required>
+              </div>
+
+              <div class="col-sm-6">
+                <label class="form-label">Last Name </label>
+                <input type="text" class="form-control" name="lastname" placeholder="Last name" required>
+              </div>
+            </div>
+
+
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="form-label">Country </label>
+                <input type="text" class="form-control" name="country" placeholder="Country" required>
+              </div>
+
+              <div class="col-sm-6">
+                <label class="form-label">Address </label>
+                <input type="text" class="form-control" placeholder="Address" name="address" required>
+              </div>
+            </div>
+
+
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="form-label"> City </label>
+                <input type="text" class="form-control" name="city" placeholder="City" required>
+              </div>
+
+              <div class="col-sm-6">
+                <label class="form-label">State </label>
+                <input type="text" class="form-control" name="state" placeholder="State" required>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="form-label">Postcode / ZIP </label>
+                <input type="text" class="form-control" name="zip" placeholder="Postcode/ZIP" required>
+              </div>
+
+              <div class="col-sm-6">
+                <label class="form-label">Phone </label>
+                <input type="tel" class="form-control" name="mno" placeholder="Phone" required>
+              </div>
+            </div>
+
+            <br>
+
+
+          </div>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Add</button>
+         <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
+      </div>
+
+
 
     </div>
   </div>
-
-</div>
 </div>
 
 
 
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-<!-- Contact Javascript File -->
-<script src="mail/jqBootstrapValidation.min.js"></script>
-<script src="mail/contact.js"></script>
 
-<!-- Template Javascript -->
-<script src="/main.js"></script>
+  
 
-  <%- include('../layouts/footer.ejs') %>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+  <%- include('../partials/footer.ejs') %>

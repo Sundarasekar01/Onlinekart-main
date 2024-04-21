@@ -1,95 +1,245 @@
-<%- include('../layouts/header.ejs') %>
-  <link rel="stylesheet" href="css/register.css">
-  </section>
-  <section class="vh-40 form-container">
-    <div class="container py-2 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
-              <h3 class="text-center text-dark mb-5">User Registration</h3>
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
 
-              <% if(typeof message !=='undefined' ) { %>
-                <p class="fs-4 text-success">
-                  <span style="color: rgb(230, 8, 8);">
-                    <%=message %>
-                  </span>
-                </p>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>OnlineKart</title>
+
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicons/favicon.ico">
+  <link rel="manifest" href="../../../assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="../../../assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="../../../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../../../vendors/simplebar/simplebar.min.js"></script>
+  <script src="../../../assets/js/config.js"></script>
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
+    rel="stylesheet">
+  <link href="../../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="../../../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+  <link href="../../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+  <link href="../../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+  <link href="../../../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+  <script>
+    var phoenixIsRTL = window.config.config.phoenixIsRTL;
+    if (phoenixIsRTL) {
+      var linkDefault = document.getElementById('style-default');
+      var userLinkDefault = document.getElementById('user-style-default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style-rtl');
+      var userLinkRTL = document.getElementById('user-style-rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
+    }
+  </script>
+</head>
+
+<body>
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
+
+ 
+
+  <main class="main" id="top">
+    <div class="container">
+      <div class="row flex-center min-vh-100 py-5">
+        <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3"><a
+            class="d-flex flex-center text-decoration-none mb-4" href="/">
+            <div class="d-flex align-items-center fw-bolder fs-5 d-inline-block"><img
+                src="../../../assets/img/icons/logo.png" alt="phoenix" width="58" /></div>
+          </a>
+          <div class="text-center mb-7">
+            <h3 class="text-1000">Sign Up</h3>
+            <p class="text-700">Create your account today</p>
+       
+            <div class="">
+              <% if(typeof message !=='undefined' ){ %>
+                <span class="fs-4">
+
+                  <h6><span style="color: rgb(255, 0, 0);">
+                      <%=message %>
+                    </span> </h6>
+
+                </span>
                 <% } %>
-
-                  <form action="/register" method="post" onsubmit="return validate()">
-                    <div class="form-outline mb-4 ">
-
-                      <input type="text" id="name" name="name" class="form-control form-control-md" placeholder="Name"
-                        onchange="nameValidate()" />
-                      <span id="Name"></span>
-                    </div>
-
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-
-                      <input type="email" id="email" name="email" class="form-control form-control-md"
-                        placeholder="Email" onchange="emailValidate()" />
-                      <span id="Email"></span>
-                    </div>
-
-                    <div class="form-outline mb-4">
-
-                      <input type="text" id="number" name="mno" class="form-control form-control-md"
-                        placeholder="Mobile No" onchange="numberValidate()" />
-                      <span id="Number"></span>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="form-outline mb-4">
-
-                      <input type="password" name="password" id="password" placeholder="Password"
-                        class="form-control form-control-md" onchange="passwordValidate()" />
-                      <span id="Password"></span>
-                    </div>
-
-                    <div class="form-outline mb-4">
-
-                      <input type="password" name="password2" id="password2" placeholder="conform-Password"
-                        class="form-control form-control-md" onchange="passwordValidate2()" />
-                      <span id="Password2"></span>
-                    </div>
-                    <!-- 
-                  <div
-                    class="d-flex justify-content-around align-items-center mb-4"
-                  ></div> -->
-
-                    <!-- Submit button -->
-                    <div style="display: flex; justify-content: space-around;">
-                      <button class=" btn btn-block back_but" style="background-color:rgb(63, 208, 63);"><a href="/home"
-                          class="text-dark text-decoration-none"> Back</a></button>
-
-                      <button type="submit" class="btn btn-block reg_but" style="background-color:rgb(63, 208, 63);"
-                        value="Register"
-                        onclick="nameValidate() , emailValidate(), numberValidate(), passwordValidate(), passwordValidate2()">
-                        Register
-                      </button>
-                    </div>
-                    <!-- <div class="divider d-flex align-items-center my-4">
-                    <p class="text-center fw-bold mx-3 mb-0 text-muted"></p>
-                  </div> -->
-                  </form>
-
             </div>
+
+            <form action="/register" method="post" onsubmit="return validate()">
+              <div class="mb-3 text-start">
+                <label class="form-label" for="name">Name</label>
+                <input class="form-control mb-3" id="name" type="text" name="name" onchange="nameValidate()"
+                  placeholder="Name" />
+               <h6><span style="color: rgb(255, 0, 0);" id="Name"></span></h6> 
+              </div>
+
+              <div class="mb-3 text-start">
+                <label class="form-label" for="email">Email address</label>
+                <input class="form-control mb-3" id="email" name="email" type="email" onchange="emailValidate()"
+                  placeholder="name@example.com" />
+                <h6><span style="color: rgb(255, 0, 0);" id="Email"></span></h6>
+              </div>
+
+              <div class="mb-3 text-start">
+                <label class="form-label" for="number">Mobile number</label>
+                <input class="form-control mb-3" type="text" id="number" name="mno" onchange="numberValidate()"
+                  placeholder="Mobile number" />
+                <h6><span style="color: rgb(255, 0, 0);" id="Number"></span></h6>
+              </div>
+
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="password">Password</label>
+                  <input class="form-control mb-3" name="password" id="password" type="password"
+                    onchange="passwordValidate()" placeholder="Password" />
+                  <h6><span style="color: rgb(255, 0, 0);" id="Password"></span></h6>
+                </div>
+
+                <div class="col-sm-6">
+                  <label class="form-label" for="confirmPassword">Confirm Password</label>
+                  <input class="form-control mb-3" name="password2" id="password2" type="password"
+                    onchange="passwordValidate2()" placeholder="Confirm Password" />
+                 <h6><span style="color: rgb(255, 0, 0);"  id="Password2"></span></h6>
+                </div>
+              </div>
+
+              <div class="form-check mb-3">
+                <label class="form-label fs--1 text-none" for="termsService">I accept the <a href="#!">terms </a>and <a
+                    href="#!">privacy policy</a></label>
+              </div>
+
+              <!-- <button class="btn btn-primary w-100 mb-3" type="submit">Sign up</button> -->
+              <button class="btn btn-primary w-100 mb-3" type="submit" onclick="nameValidate() , emailValidate() ,numberValidate(), passwordValidate(), passwordValidate2()">Sign up</button>
+
+
+
+              <div class="text-center">
+                <a class="fs--1 fw-bold" href="/login">Sign in to an existing account</a>
+              </div>
+            </form>
+
+
           </div>
         </div>
       </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-  </section>
-  <!-- <section for="registraction">
 
 
-  </section> -->
-  <script src="validation.js"> </script>
+  </main><!-- ===============================================-->
 
-  <%- include('../layouts/footer.ejs') %>
+  <!-- ===============================================-->
+  <!--    JavaScripts-->
+  <!-- ===============================================-->
+
+
+  <script>
+    function nameValidate() {
+      let name = document.getElementById("name").value;
+      if (name == "") {
+        document.getElementById("Name").innerHTML = "Please enter a name.";
+        return false;
+      } else {
+        document.getElementById("Name").innerHTML = "";
+        return true;
+      }
+    }
+
+    // Rest of your validation functions
+
+    function emailValidate() {
+      let email = document.getElementById("email").value;
+      if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(email) === false) {
+        document.getElementById("Email").innerHTML = "Please enter a valid email address.";
+        return false;
+      } else {
+        document.getElementById("Email").innerHTML = "";
+        return true;
+      }
+    }
+
+    function numberValidate() {
+      let number = document.getElementById("number").value;
+      if (/^[0-9]+$/.test(number) === false) {
+        document.getElementById("Number").innerHTML = "Please enter a valid number.";
+        return false;
+      } else if (number.length !== 10) {
+        document.getElementById("Number").innerHTML = "Please enter a 10-digit number.";
+        return false;
+      } else {
+        document.getElementById("Number").innerHTML = "";
+        return true;
+      }
+    }
+
+    function passwordValidate() {
+      let password = document.getElementById("password").value;
+      if (password.length < 8) {
+        document.getElementById("Password").innerHTML = "Password must contain 8 characters.";
+        return false;
+      } else {
+        document.getElementById("Password").innerHTML = "";
+        return true;
+      }
+    }
+
+    function passwordValidate2() {
+      let password = document.getElementById("password").value;
+      let password2 = document.getElementById("password2").value;
+      if (password2 !== password || password2 === "") {
+        document.getElementById("Password2").innerHTML = "Passwords do not match.";
+        return false;
+      } else {
+        document.getElementById("Password2").innerHTML = "";
+        return true;
+      }
+    }
+
+    function validate() {
+      if (nameValidate() && emailValidate() && numberValidate() && passwordValidate() && passwordValidate2()) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+
+
+
+
+  </script>
+
+
+  <script src="../../../vendors/popper/popper.min.js"></script>
+  <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+  <script src="../../../vendors/is/is.min.js"></script>
+  <script src="../../../vendors/fontawesome/all.min.js"></script>
+  <script src="../../../vendors/lodash/lodash.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="../../../vendors/list.js/list.min.js"></script>
+  <script src="../../../vendors/feather-icons/feather.min.js"></script>
+  <script src="../../../vendors/dayjs/dayjs.min.js"></script>
+  <script src="../../../assets/js/phoenix.js"></script>
+</body>
+
+</html>

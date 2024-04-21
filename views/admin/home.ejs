@@ -1,58 +1,104 @@
-<%- include ('../layouts/adminHeader.ejs') %>
+<%- include ('../partials/adminHeader.ejs') %>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
 
 
 
 
+<div class="container">
+      
 
+      <nav class="mb-2" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
+          <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
+          <li class="breadcrumb-item active">Default</li>
+        </ol>
+      </nav>
+      <br>
 
-        <h4 class="text-center my-5 text-success">ADMIN DASHBOARD</h4>
-        <div class="container-fluid pt-4 px-4">
-            <div class="row g-4">
-               
-                <div class="col-sm-6 col-xl-3">
-                    <div class="bg-success rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                        <div class="ms-3">
-                            <p class="mb-2">Sale</p>
-                            <h6 class="mb-0">
-                                <%=sales%>
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-              
-                <div class="col-sm-6 col-xl-3">
-                    <div class="bg-success rounded d-flex align-items-center justify-content-between p-4">
-                        <i class="fa fa-chart-pie fa-3x text-primary"></i>
-                        <div class="ms-3">
-                            <p class="mb-2">Total Revenue</p>
-                            <h6 class="mb-0"><%=totalRevenue%></h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="row g-2 mb-4">
+        <div class="col-auto">
+          <h2 class="mb-0">Analytics</h2>
         </div>
+      </div>
+      <hr>
+      <br>
+
+    
+      <div class="px-3 mb-6">
+      
+
+
+            <div class="row justify-content-between g-0">
+                  <div class="col-6 col-md-4 col-xxl-2 text-center">
+                      <span class="uil fs-5 lh-1 uil-users-alt text-primary"></span>
+                      <h1 class="fs-3 pt-3"><%= customers %></h1>
+                      <p class="fs-9 mb-0">Total Customers</p>
+                  </div>
+                  <div class="col-6 col-md-4 col-xxl-2 text-center">
+                        <span class=" util fs-5 lh-1 uil-chart-line text-primary"></span>
+                        <h1 class="fs-3 pt-3"><%= sales %></h1>
+                        <p class="fs-9 mb-0">Total Sales</p>
+                    </div>
+                  <div class="col-6 col-md-4 col-xxl-2 text-center">
+                      <span class=" util fs-5 lh-1 uil-rupee-sign text-primary"></span>
+                      <h1 class="fs-3 pt-3"><%= totalRevenue %></h1>
+                      <p class="fs-9 mb-0">Total Revenue</p>
+                  </div>
+              </div>
+              
+              
+          </div>
+      
+         
+      
+
+
+    </div>
+   
+
+
+
+
+
+
+  
         <!-- Sale & Revenue End -->
 
 <hr>
         <!-- Sales Chart Start -->
-        <div style="height: 50vh;">
-            <div style=" margin-left:5% ; width: 90%; height: 60vh; background-color: rgb(255, 255, 255) ;">
-                <canvas id="myChart" class="mt-5" style="margin-left: 19%; width:100%;max-width:700px"></canvas>
-            </div>
-            <div style="margin-left:5% ; width:90%; height: 60vh; background-color: rgb(255, 255, 255) ; ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                  <div class="col-auto">
+                        <h3 class="mb-0">Stocks Report</h3>
+                      </div>
+                    <canvas id="myChart"></canvas>
+                </div>
+                <hr>
 
-                <canvas id="myChart2" class="mt-5" style="margin-left: 19%;  width:100%;max-width:700px"></canvas>
-            </div>
 
+
+                <div class="col-md-12 mb-3">
+                  <div class="col-auto">
+                        <h3 class="mb-0">Sales Report</h3>
+                      </div>
+                      <br>
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
         </div>
+        
+
         <input type="hidden" id="pds" value="<%=pds%>">
         <input type="hidden" id="qty" value="<%=qty%>">
         <input type="hidden" id="key1" value="<%=key1%>" />
         <input type="hidden" id="key2" value="<%=key2%>" />
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
-        </script>
+      
 
         <script>
 
@@ -67,12 +113,29 @@
             console.log(xValue, yValue);
 
             var barColors = [
-                "#b91d47",
-                "#2b5797",
-                "#e8c3b9",
-                "#1e7145",
-                "#0000FF",
-                "#FFFF00"
+                  "#8ab7e0",
+                  "#ffb285",
+                  "#93d8a7",
+                  "#e3a4a7",
+                  "#b7a4d2",
+                  "#b7a6a1",
+                  "#f0c9e0",
+                  "#b7b7b7",
+                  "#d3e08f",
+                  "#7dc5df",
+                  "#a8aad3",
+                  "#b7c3a6",
+                  "#d4c2e0",
+                  "#ffd3bb",
+                  "#ffc4c6",
+                  "#c9e7c0",
+                  "#ffd3b7",
+                  "#c8d7eb",
+                  "#f8dde9",
+                  "#d8cce3"
+
+            
+
             ];
 
             new Chart("myChart", {
@@ -116,4 +179,8 @@
         </script>
 
 
-        <%- include ('../layouts/adminFooter.ejs') %>
+     
+<br>
+
+      
+<%- include ('../partials/adminFooter.ejs') %>

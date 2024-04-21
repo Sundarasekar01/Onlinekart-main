@@ -27,7 +27,7 @@ user_route.get("/login", auth.isLogout, userController.loginLoad);
 
 user_route.post("/login", userController.verifyLogin);
 
-user_route.post("/verifytwofact",userController.twoFactor)
+// user_route.post("/verifytwofact",userController.twoFactor)
 
 user_route.get("/register", auth.isLogout, userController.loadRegister);
 
@@ -74,7 +74,8 @@ user_route.get("/delete-address",userController.deleteAddress);
 
 user_route.get("/edit-address",userController.editAddress);
 
-user_route.post("/edit-address",userController.editUpdateAddress);
+user_route.post("/edit-address",userController.editAddress);
+
 
 user_route.get("/editUser",userController.editUser);
 

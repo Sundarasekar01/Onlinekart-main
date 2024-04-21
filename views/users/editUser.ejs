@@ -1,54 +1,131 @@
-<%- include ('../layouts/header.ejs') %>
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
 
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>OnlineKart</title>
 
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicons/favicon.ico">
+  <link rel="manifest" href="../../../assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="../../../assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="../../../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../../../vendors/simplebar/simplebar.min.js"></script>
+  <script src="../../../assets/js/config.js"></script>
 
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
+    rel="stylesheet">
+  <link href="../../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="../../../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+  <link href="../../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+  <link href="../../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+  <link href="../../../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+  <script>
+    var phoenixIsRTL = window.config.config.phoenixIsRTL;
+    if (phoenixIsRTL) {
+      var linkDefault = document.getElementById('style-default');
+      var userLinkDefault = document.getElementById('user-style-default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style-rtl');
+      var userLinkRTL = document.getElementById('user-style-rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
+    }
+  </script>
+</head>
 
+<body>
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
 
+ 
 
+  <main class="main" id="top">
+    <div class="container">
+      <div class="row flex-center min-vh-100 py-5">
+        <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
+          <div class="text-center mb-7">
+           
+            <form action="/editUser" method="post" class="bg-light rounded-5 p-4">
 
+                <h4 class="mtext-105 cl2 txt-center p-b-30">
+                    Update Details
+                </h4>
 <br>
-    <section class=" p-t-40 p-b-116">
-        <div class="container">
-            <div class="flex-w flex-tr">
-                <div class="size-210 bor10 p-lr-70 p-t-20 p-b-70 p-lr-15-lg w-full-md">
-
-                    <form action="/editUser" method="post" class="bg-light rounded-5 p-4">
-
-                        <h4 class="mtext-105 cl2 txt-center p-b-30">
-                            Update Details
-                        </h4>
-
-                        <label>Name *</label>
-                        <input type="text" class="form-control" placeholder="name" name="name" value="<%=user.name%>"
-                            required>
+               
+                <div class="mb-3 text-start">
+                <label class="form-label" >Name </label>
+                <input type="text" class="form-control" placeholder="name" name="name" value="<%=user.name%>"
+                    required>
+                </div>
 
 
+                <div class="mb-3 text-start">
+                <label class="form-label">Email</label>
+                <input type="text" class="form-control" placeholder="enter email" name="email"
+                    value="<%=user.email%>" required>
+                </div>
 
-                        <label>Email</label>
-                        <input type="text" class="form-control" placeholder="enter email" name="email"
-                            value="<%=user.email%>" required>
+                <div class="mb-3 text-start">
+                <label class="form-label">Mobile</label>
+                <input type="number" class="form-control" placeholder="enter phone number" name="number"
+                    value="<%=user.mobile%>" required>
+                </div>
+                <br>
+                <br>
+                <div class="d-flex justify-content-center mx-4 mb-5 mb-lg-4">
+                    <input type="hidden" name="id" value="<%=user._id%>">
+                    <button type="submit" value="" class="btn btn-primary ">Save changes</button>&ensp;
+                    <a href="userProfile" class="btn btn-primary ml-2 ">Go Back</a>
+                </div>
+            </form>
+            
+
+          </div>
+        </div>
+      </div>
 
 
-                        <label>Email</label>
-                        <input type="number" class="form-control" placeholder="enter phone number" name="number"
-                            value="<%=user.mobile%>" required>
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-center mx-4 mb-5 mb-lg-4">
-                            <input type="hidden" name="id" value="<%=user._id%>">
-                            <button type="submit" value="" class="btn btn-primary btn-lg">Save</button>&ensp;
-                            <a href="userProfile" class="btn btn-primary ml-2 btn-lg">Go Back</a>
-                        </div>
-                    </form>
-    </section>
-
-
-
-<br>
+  </main>
 
 
 
+  <script src="../../../vendors/popper/popper.min.js"></script>
+  <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+  <script src="../../../vendors/is/is.min.js"></script>
+  <script src="../../../vendors/fontawesome/all.min.js"></script>
+  <script src="../../../vendors/lodash/lodash.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="../../../vendors/list.js/list.min.js"></script>
+  <script src="../../../vendors/feather-icons/feather.min.js"></script>
+  <script src="../../../vendors/dayjs/dayjs.min.js"></script>
+  <script src="../../../assets/js/phoenix.js"></script>
+</body>
+
+</html>
 
 
 
@@ -59,4 +136,20 @@
 
 
 
-    <%- include ('../layouts/footer.ejs') %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
