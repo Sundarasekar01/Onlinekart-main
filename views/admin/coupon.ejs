@@ -2,13 +2,16 @@
 
 <div class="container">
 
- 
 
- 
 
-  <h4 class="text-center text-success my-5">COUPON</h4>
+  <div class="row g-2 mb-4">
+    <div class="col-auto">
+      <h2 class="mb-0">Coupons</h2>
+    </div>
+  </div>
   <a href="/admin/addCoupon"><button type="button" class="btn btn-primary mx-3">+ Add Coupon</button></a>
-
+<br>
+<br>
   <div class="table-responsive">
 
   <table class="table text-center">
@@ -36,13 +39,13 @@
 
             <td>
               <a href="/admin/edit-coupon?id=<%- coupon[i-1]._id %>"><button type="button"
-                  class="btn btn-success">edit</button></a>
+                  class="btn btn-secondary">Edit</button></a>
 
-              <a href="/admin/delete-coupon?id=<%- coupon[i-1]._id %>" class="btn btn-danger p-1 border-3"
-                type="button">delete</a>&nbsp;
-              <a id="<%-coupon[i-1]._id %>" style="text-decoration: none; color: #4117be;"
+              <a href="/admin/delete-coupon?id=<%- coupon[i-1]._id %>" 
+                type="button"><button class="btn btn-danger">Delete</button></a>&nbsp;
+              <a id="<%-coupon[i-1]._id %>" "
                 href="/admin/avail-coupon?id=<%- coupon[i-1]._id %>">
-                <% if(coupon[i-1].isAvailable){ %>Unlist<%}else{%>list<%}%>
+               <button class="btn btn-primary"><% if(coupon[i-1].isAvailable){ %>Unlist<%}else{%>list<%}%></button> 
               </a>
             </td>
           </tr>

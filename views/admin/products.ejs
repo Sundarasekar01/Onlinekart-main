@@ -2,7 +2,11 @@
 
 <div class="container">
 
-        <h4 class="text-center my-5 text-success">ALL PRODUCTS</h4>
+    <div class="row g-2 mb-4">
+        <div class="col-auto">
+          <h2 class="mb-0">Products</h2>
+        </div>
+      </div>
         <a href="/admin/add-product"><button type="button" class="btn btn-primary mx-3">+ Add Product</button></a>
         
         <br><br>
@@ -55,18 +59,19 @@
                                             <% } %>
                                 </td>
                                 <td>
-                                    <a class="text-success" href="/admin/edit-product?id=<%= products[i-1]._id %>"><i
-                                            style="color: green;" class="m-r-5 mdi mdi-border-color"></i>Edit</a><br>
+                                    <a class="text-success" href="/admin/edit-product?id=<%= products[i-1]._id %>">
+                                        <button class="btn btn-secondary">Edit</button>
+                                           </a><br>
+                                           <br>
 
-                                    <a onclick="return confirm('do you want to delete?')" class="text-danger"
-                                        href="/admin/delete-product?id=<%= products[i-1]._id %>"><i
-                                            style="color: #ff0000;"
-                                            class="m-r-5 mdi mdi-border-color"></i>Delete</a><br>
+                                    <a onclick="return confirm('do you want to delete?')" 
+                                        href="/admin/delete-product?id=<%= products[i-1]._id %>">
+                                    <button class="btn btn-danger">Delete</button></a><br>
 
-
-                                    <a id="<%-products[i-1]._id %>" style="text-decoration: none; color: #310fca;"
+<br>
+                                    <a id="<%-products[i-1]._id %>" 
                                         href="/admin/show-product?id=<%-products[i-1]._id %>">
-                                        <% if(products[i-1].isAvailable){ %>Unlist<%}else{%>list<%}%>
+                                        <button class="btn btn-primary"><% if(products[i-1].isAvailable){ %>Unlist<%}else{%>list<%}%></button>
                                     </a>
                                 </td>
 

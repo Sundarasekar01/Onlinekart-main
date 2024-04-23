@@ -1,100 +1,242 @@
-<%- include ('../partials/adminHeader.ejs') %>
 
 
 
 
-        <h4 class="text-center text-success my-5"> Add Product</h4>
-        <h3 style="color: red;text-align: center;">
-            <%=message%>
-        </h3>
-        <form action="/admin/add-product" method="post" style="margin-left: 15%;width: 50%;"
-            enctype="multipart/form-data">
-            <fieldset>
-                <!-- Text input-->
-
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="product_name">Name</label>
-                    <br>
-                    <input id="product_name" name="pName" placeholder="Name" class="form-control input-md highlight"
-                        required="" type="text">
-
-                    <!-- Text input-->
-                    <label class="col-md-4 control-label" for="product_name">Stock</label>
-                    <br>
-                    <input id="product_name" name="pStock" placeholder="Stock" class="form-control input-md highlight"
-                        required="" type="number">
-
-
-                    <label class="col-md-4 control-label" for="product_name">category</label>
-                    <br>
-                    <select class="form-select border-white" id="exampleFormControlSelect1"
-                        aria-label="Default select example" aria-placeholder="" name="pCategory">
-                        <option disabled selected>select any category</option>
-                        <% if(category){ %>
-                            <% for(let i=1;i <=category.length; i++){ %>
-                                <option value="<%= category[i-1].name %>">
-                                    <%= category[i-1].name %>
-                                </option>
-                                <% } %>
-                                    <% }else{ %>
-                                        <h1>No Categories to add</h1>
-                                        <% } %>
-                    </select>
 
 
 
-                    <!-- Text input-->
-                    <label class="col-md-4 control-label" for="product_name">Description</label>
-                    <br>
+    
+
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ===============================================-->
+  <!--    Document Title-->
+  <!-- ===============================================-->
+  <title>OnlineKart</title>
+
+  <!-- ===============================================-->
+  <!--    Favicons-->
+  <!-- ===============================================-->
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/img/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../assets/img/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../assets/img/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicons/favicon.ico">
+  <link rel="manifest" href="../../../assets/img/favicons/manifest.json">
+  <meta name="msapplication-TileImage" content="../../../assets/img/favicons/mstile-150x150.png">
+  <meta name="theme-color" content="#ffffff">
+  <script src="../../../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="../../../vendors/simplebar/simplebar.min.js"></script>
+  <script src="../../../assets/js/config.js"></script>
+
+  <!-- ===============================================-->
+  <!--    Stylesheets-->
+  <!-- ===============================================-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap"
+    rel="stylesheet">
+  <link href="../../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="../../../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+  <link href="../../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+  <link href="../../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+  <link href="../../../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+  <script>
+    var phoenixIsRTL = window.config.config.phoenixIsRTL;
+    if (phoenixIsRTL) {
+      var linkDefault = document.getElementById('style-default');
+      var userLinkDefault = document.getElementById('user-style-default');
+      linkDefault.setAttribute('disabled', true);
+      userLinkDefault.setAttribute('disabled', true);
+      document.querySelector('html').setAttribute('dir', 'rtl');
+    } else {
+      var linkRTL = document.getElementById('style-rtl');
+      var userLinkRTL = document.getElementById('user-style-rtl');
+      linkRTL.setAttribute('disabled', true);
+      userLinkRTL.setAttribute('disabled', true);
+    }
+  </script>
+</head>
+
+<body>
+  <!-- ===============================================-->
+  <!--    Main Content-->
+  <!-- ===============================================-->
+
+ 
+
+  <main class="main" id="top">
+    <div class="container">
+      <div class="row flex-center min-vh-100 py-5">
+        <div class="col-sm-10 col-md-8 col-lg-5 col-xl-5 col-xxl-3">
+          <div class="text-center mb-7">
+           
+            <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+            
+                <h4 class="mtext-105 cl2 txt-center p-b-30">
+                    Add Product
+                </h4>
+                <h4 style="color: red;" class="text-center"><%-message%></h4>
+                <br>
+            
+            
+            
+            
+                <div class="mb-3 text-start">
+                    <label class="form-label">Product Name </label>
+                    <input id="product_name" name="pName" placeholder="Name" class="form-control input-md highlight" required=""
+                        type="text">
+            
+                </div>
+
+
+                <div class="mb-3 text-start">
+                    <label class="form-label">Description </label>
                     <input id="product_name" name="pDescription" placeholder="Enter Description"
                         class="form-control input-md highlight" required="" type="text">
-
-                    <!-- Text input-->
-                    <label class="col-md-4 control-label" for="product_name">Price</label>
-                    <br>
-                    <input id="product_name" name="pPrice" placeholder="Enter price"
-                        class="form-control input-md highlight" required="" type="number">
-
-                    <!-- Text input-->
-                    <label class="col-md-4 control-label" for="product_name">Rating</label>
-                    <br>
-                    <input id="product_name" name="pRating" placeholder="Mark price"
-                        class="form-control input-md highlight" required="" type="text">
+            
+                </div>
 
 
-                    <!-- File Button -->
-                    <label for="filebutton">Choose image</label>
-                    <br>
-                    <input id="filebutton" name="pImage" class="input-file" type="file" required multiple
-                        accept="image/*">
+                <div class="row">
+                    <div class="col-sm-6">
 
+                        <div class="mb-3 text-start">
+                            <label class="form-label">Category </label>
+                            <select class="form-select border-white" id="exampleFormControlSelect1" aria-label="Default select example"
+                                aria-placeholder="" name="pCategory">
+                                <option disabled selected>select any category</option>
+                                <% if(category){ %>
+                                    <% for(let i=1;i <=category.length; i++){ %>
+                                        <option value="<%= category[i-1].name %>">
+                                            <%= category[i-1].name %>
+                                        </option>
+                                        <% } %>
+                                            <% }else{ %>
+                                                <h1>No Categories to add</h1>
+                                                <% } %>
+                            </select>
+                        </div>
+                       
 
-                    <!-- Button -->
-                    <div style="margin-left: 25%;" class="my-3">
-                        <button type="submit" id="singlebutton" name="singlebutton"
-                            class="btn btn-success">+Add</button>
-                        <a href="/admin/product"><button type="button" id="singlebutton" name="singlebutton"
-                                class="btn btn-outline-light mx-3">Go back</button></a>
                     </div>
 
-            </fieldset>
-        </form>
+
+                    
+                        <div class="col-sm-6">
+
+                            <div class="mb-3 text-start">
+                                <label class="form-label">Total Stock </label>
+                                <input id="product_name" name="pStock" placeholder="Stock" class="form-control input-md highlight" required=""
+                                    type="number">
+                        
+                            </div>
+
+                        </div>
+                </div>
+            
+            
+                
+            
+            
+               
+            
+            
+              
+            
+            
+                <div class="row">
+                    <div class="col-sm-6">
+            
+                        <div class="mb-3 text-start">
+                            <label class="form-label">Price </label>
+                            <input id="product_name" name="pPrice" placeholder="Enter price" class="form-control input-md highlight"
+                                required="" type="number">
+                        </div>
+            
+            
+                    </div>
+            
+            
+            
+                    <div class="col-sm-6">
+            
+            
+                        <div class="mb-3 text-start">
+                            <label class="form-label">Product Rating</label>
+            
+                            <input id="product_name" name="pRating" placeholder="rating" class="form-control input-md highlight"
+                                required="" type="text">
+                        </div>
+                    </div>
+                </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+                <div class="mb-3 text-start">
+                    <label class="form-label" for="filebutton">Images </label>
+                    <input id="filebutton" name="pImage" class="input-file" type="file" required multiple accept="image/*">
+            
+                </div>
+            
+            
+            
+            
+            
+            
+            
+            
+                <div class="d-flex justify-content-center mx-4 mb-5 mb-lg-4">
+            
+            
+                    <a style="margin-left: 40%;"><button type="submit" class="btn btn-primary">Save</button></a>
+            
+                    &ensp;
+                    <a style="margin-right: 40%;" href="/admin/product"><button type="button"
+                            class="btn btn-primary">cancel</button></a>
+            
+                </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+
+  </main>
+
+
+
+  <script src="../../../vendors/popper/popper.min.js"></script>
+  <script src="../../../vendors/bootstrap/bootstrap.min.js"></script>
+  <script src="../../../vendors/anchorjs/anchor.min.js"></script>
+  <script src="../../../vendors/is/is.min.js"></script>
+  <script src="../../../vendors/fontawesome/all.min.js"></script>
+  <script src="../../../vendors/lodash/lodash.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+  <script src="../../../vendors/list.js/list.min.js"></script>
+  <script src="../../../vendors/feather-icons/feather.min.js"></script>
+  <script src="../../../vendors/dayjs/dayjs.min.js"></script>
+  <script src="../../../assets/js/phoenix.js"></script>
+</body>
+
+</html>
 
 
 
 
-        <style>
-            .highlight {
-                border-color: aliceblue;
-                margin-top: 2%;
-                margin-bottom: 2%;
-            }
-        </style>
 
 
 
-
-
-<%- include ('../partials/adminFooter.ejs') %>

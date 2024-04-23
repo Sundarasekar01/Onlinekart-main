@@ -10,13 +10,8 @@
           <div class="container-small">
 
 
-            <nav class="mb-2" aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0">
-                  <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-                  <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
-                </ol>
-              </nav>
+           
+      
               <h2 class="mb-6">Product details</h2>
 
             <div class="row g-5 mb-5 mb-lg-8" data-product-details="data-product-details">
@@ -143,11 +138,11 @@
                   <div class="tab-pane " id="tab-reviews" role="tabpanel" aria-labelledby="reviews-tab">
 
 
-<% if(detail.review){%>
 
+  <div class="bg-white rounded-3 p-4 border border-200 " style="width: 400px;">
                     <%for(i=0;i<detail.review.length;i++){%>
                         
-                    <div class="bg-white rounded-3 p-4 border border-200">
+                    
                       
 
                       <div class="mb-4 hover-actions-trigger btn-reveal-trigger">
@@ -160,13 +155,23 @@
                         </div>
                         <p class="text-1000 mb-1"><%=detail.review[i].review%></p>
                       </div>
-      <%}%>
-      <%}%>
+                      <%}%>
 
-      <h5> No reviews here after ...</h5>
-      
+
+                      <h5> No reviews here after ...</h5>
 
                     </div>
+     
+      
+   
+     
+        
+     
+        
+     
+
+
+                    
                   </div>
                 </div>
               </div>

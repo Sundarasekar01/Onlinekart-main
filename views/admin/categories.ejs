@@ -2,14 +2,6 @@
 
 <div class="container">
 
-  <nav class="mb-2" aria-label="breadcrumb">
-    <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item"><a href="#!">Page 1</a></li>
-      <li class="breadcrumb-item"><a href="#!">Page 2</a></li>
-      <li class="breadcrumb-item active">Default</li>
-    </ol>
-  </nav>
-
   <div class="row g-2 mb-4">
     <div class="col-auto">
       <h2 class="mb-0">Categories</h2>
@@ -46,10 +38,10 @@
        <td>
         <a id="<%- category[i]._id %>"  href="/admin/delete-category?id=<%- category[i]._id %>">
           <% if(category[i].is_available) { %>
-          <button class="btn btn-success" >Unlist</button>
+          <button class="btn btn-secondary" >Unlist</button>
           <% } else { %>
 
-          <button class="btn btn-danger">list</button>
+          <button class="btn btn-success">list</button>
 
           <% } %>
         </a>
